@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Payment System — Complete Training Guide</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --white: #ffffff;
+    --surface: #f0f2f8;
+    --border: #dde1ed;
+    --border-light: #eaecf5;
+    --text: #1a1d2e;
+    --muted: #6b7280;
+    --light-text: #8b93a8;
+
+    --blue: #2563eb;
+    --blue-light: #eff4ff;
+    --blue-mid: #dbeafe;
+    --indigo: #4f46e5;
+    --indigo-light: #eef2ff;
+    --teal: #0d9488;
+    --teal-light: #f0fdfa;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --amber-mid: #fef3c7;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --rose: #e11d48;
+    --rose-light: #fff1f2;
+    --slate: #475569;
+
+    --chapter1: #2563eb;
+    --chapter2: #7c3aed;
+    --chapter3: #0d9488;
+    --chapter4: #d97706;
+    --chapter5: #dc2626;
+    --chapter6: #059669;
+    --chapter7: #7c3aed;
+    --chapter8: #2563eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 240px; background: var(--white);
+    border-right: 1px solid var(--border);
+    overflow-y: auto; z-index: 100;
+    display: flex; flex-direction: column;
+  }
+  .sidebar-header {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .sidebar-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .sidebar-subtitle {
+    font-size: 13px; font-weight: 700; color: var(--text);
+  }
+  .sidebar-nav { padding: 10px 0 20px; flex: 1; }
+  .nav-chapter {
+    padding: 6px 18px 3px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--light-text);
+    margin-top: 8px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 18px; text-decoration: none;
+    color: var(--muted); font-size: 12.5px;
+    transition: all 0.15s; border-left: 2px solid transparent;
+  }
+  .nav-item:hover { color: var(--blue); background: var(--blue-light); border-left-color: var(--blue); }
+  .nav-item.active { color: var(--blue); background: var(--blue-light); border-left-color: var(--blue); font-weight: 600; }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 240px;
+    padding: 40px 48px 80px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 300px; height: 100%; 
+    background: linear-gradient(135deg, #eff4ff 0%, #f5f3ff 100%);
+    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--blue-mid); color: var(--blue);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 26px; font-weight: 800; line-height: 1.2;
+    color: var(--text); margin-bottom: 10px; position: relative;
+  }
+  .hero p {
+    color: var(--muted); font-size: 13.5px; max-width: 520px;
+    position: relative; margin-bottom: 20px;
+  }
+  .hero-chapters {
+    display: flex; flex-wrap: wrap; gap: 6px; position: relative;
+  }
+  .chapter-pill {
+    background: var(--white); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 6px; font-size: 11px;
+    color: var(--slate); font-weight: 500;
+  }
+
+  /* ── CHAPTER HEADER ── */
+  .chapter-header {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 24px; padding-top: 8px;
+  }
+  .chapter-num {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800; color: white;
+    flex-shrink: 0;
+  }
+  .chapter-meta { flex: 1; }
+  .chapter-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .chapter-title {
+    font-size: 20px; font-weight: 800; color: var(--text); line-height: 1.2;
+  }
+  .chapter-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ── SECTION ── */
+  .chapter-block {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  .section-title {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-num {
+    width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 20px 0; }
+
+  /* ── CARDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+  .card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+  }
+  .card h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .card p, .card li { font-size: 12.5px; color: var(--muted); }
+  .card ul { margin-left: 16px; }
+  .card ul li { margin-bottom: 3px; }
+
+  .card-blue { border-left: 3px solid var(--blue); background: var(--blue-light); }
+  .card-green { border-left: 3px solid var(--green); background: var(--green-light); }
+  .card-amber { border-left: 3px solid var(--amber); background: var(--amber-light); }
+  .card-rose { border-left: 3px solid var(--rose); background: var(--rose-light); }
+  .card-indigo { border-left: 3px solid var(--indigo); background: var(--indigo-light); }
+  .card-teal { border-left: 3px solid var(--teal); background: var(--teal-light); }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th {
+    background: var(--surface); padding: 9px 12px;
+    font-size: 11px; font-weight: 700; text-align: left;
+    color: var(--text); border-bottom: 2px solid var(--border);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border-light); color: var(--muted); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 10px; padding: 13px 16px;
+    font-size: 12.5px; margin: 14px 0;
+  }
+  .callout strong { display: block; margin-bottom: 3px; }
+  .callout-blue { background: var(--blue-light); border: 1px solid var(--blue-mid); color: var(--blue); }
+  .callout-blue p { color: #1e40af; }
+  .callout-amber { background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .callout-amber strong { color: var(--amber); }
+  .callout-amber p { color: #92400e; }
+  .callout-green { background: var(--green-light); border: 1px solid #bbf7d0; }
+  .callout-green strong { color: var(--green); }
+  .callout-green p { color: #166534; }
+  .callout-rose { background: var(--rose-light); border: 1px solid #fecdd3; }
+  .callout-rose strong { color: var(--rose); }
+  .callout-rose p { color: #9f1239; }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10.5px; font-weight: 600;
+  }
+  .tag-blue { background: var(--blue-mid); color: var(--blue); }
+  .tag-green { background: #dcfce7; color: var(--green); }
+  .tag-amber { background: var(--amber-mid); color: var(--amber); }
+  .tag-rose { background: #ffe4e6; color: var(--rose); }
+  .tag-slate { background: #f1f5f9; color: var(--slate); }
+  .tag-indigo { background: #e0e7ff; color: var(--indigo); }
+
+  /* ── CREDIT CARD VISUAL ── */
+  .cc-card {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1a3353 50%, #0f2340 100%);
+    border-radius: 14px; padding: 22px 24px; max-width: 340px;
+    aspect-ratio: 1.586; display: flex; flex-direction: column;
+    justify-content: space-between; position: relative; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(30,58,95,0.35);
+  }
+  .cc-card::after {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cc-chip {
+    width: 36px; height: 28px; background: linear-gradient(135deg, #d4a843, #f0c060);
+    border-radius: 5px;
+  }
+  .cc-num { font-size: 15px; letter-spacing: 0.2em; color: rgba(255,255,255,0.88); font-family: 'Courier New', monospace; }
+  .cc-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .cc-label-sm { font-size: 8px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+  .cc-val { font-size: 12px; color: rgba(255,255,255,0.82); font-family: 'Courier New', monospace; }
+  .cc-name { font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; text-transform: uppercase; }
+  .cc-net { font-size: 18px; font-weight: 800; color: rgba(255,255,255,0.85); }
+
+  /* ── FLOW ── */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .flow-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding-bottom: 16px; position: relative;
+  }
+  .flow-item:last-child { padding-bottom: 0; }
+  .flow-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .flow-item:not(:last-child) .flow-circle::after {
+    content: '';
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 16px; background: var(--border);
+  }
+  .flow-body { padding-top: 5px; flex: 1; }
+  .flow-body strong { color: var(--text); font-size: 13px; display: block; margin-bottom: 2px; }
+  .flow-body span { color: var(--muted); font-size: 12px; }
+
+  /* ── NETWORK PILLS ── */
+  .network-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .net-pill {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; text-align: center;
+    flex: 1; min-width: 110px;
+  }
+  .net-name { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+  .net-pill p { font-size: 11px; color: var(--muted); margin: 0; }
+  .net-pill .bin { font-family: 'Courier New', monospace; font-size: 10px; color: var(--blue); }
+
+  /* ── AUTH CARDS ── */
+  .auth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .auth-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px; position: relative;
+  }
+  .auth-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; border-radius: 10px 10px 0 0;
+  }
+  .auth-card.c1::before { background: var(--blue); }
+  .auth-card.c2::before { background: var(--teal); }
+  .auth-card.c3::before { background: var(--green); }
+  .auth-card.c4::before { background: var(--amber); }
+  .auth-card.c5::before { background: #f97316; }
+  .auth-card.c6::before { background: var(--indigo); }
+  .auth-card.c7::before { background: var(--rose); }
+  .auth-card.c8::before { background: #ec4899; }
+  .auth-num { font-size: 9px; font-weight: 700; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .auth-card h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .auth-card p { font-size: 11.5px; color: var(--muted); margin-bottom: 8px; }
+  .auth-usecase { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 11px; color: var(--slate); }
+  .auth-usecase strong { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--light-text); margin-bottom: 2px; }
+
+  /* ── SCORE BARS ── */
+  .score-spectrum {
+    height: 16px; border-radius: 8px; margin: 10px 0;
+    background: linear-gradient(90deg, #ef4444 0%, #f59e0b 30%, #eab308 55%, #84cc16 75%, #22c55e 100%);
+  }
+  .score-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-family: 'Courier New', monospace; }
+  .score-ranges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .sr { flex: 1; min-width: 70px; text-align: center; padding: 8px 6px; border-radius: 8px; }
+  .sr .num { display: block; font-weight: 700; font-size: 11px; font-family: 'Courier New', monospace; }
+  .sr .lbl { font-size: 10px; color: var(--muted); }
+  .sr-poor { background: #fef2f2; border: 1px solid #fecaca; } .sr-poor .num { color: #ef4444; }
+  .sr-fair { background: var(--amber-light); border: 1px solid var(--amber-mid); } .sr-fair .num { color: var(--amber); }
+  .sr-good { background: #fefce8; border: 1px solid #fef08a; } .sr-good .num { color: #ca8a04; }
+  .sr-vg { background: #f7fee7; border: 1px solid #d9f99d; } .sr-vg .num { color: #65a30d; }
+  .sr-exc { background: var(--green-light); border: 1px solid #bbf7d0; } .sr-exc .num { color: var(--green); }
+
+  /* ── PIE CHART ── */
+  .fico-factors { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+  .fico-pie {
+    width: 140px; height: 140px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(
+      #2563eb 0% 35%, #0d9488 35% 65%, #16a34a 65% 80%, #d97706 80% 90%, #e11d48 90% 100%
+    );
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .fico-legend { display: flex; flex-direction: column; gap: 7px; }
+  .fico-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--slate); }
+  .fico-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ── BIG FLOW ── */
+  .big-flow {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 0; margin-top: 16px;
+  }
+  .bf-step {
+    flex: 1; min-width: 90px; text-align: center;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 10px;
+  }
+  .bf-icon { font-size: 18px; margin-bottom: 5px; }
+  .bf-label { font-size: 11px; font-weight: 700; color: var(--text); display: block; }
+  .bf-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .bf-arrow { font-size: 16px; color: var(--border); padding: 0 4px; flex-shrink: 0; }
+
+  /* ── MODE CARDS ── */
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .mode-card { border-radius: 10px; padding: 16px; }
+  .mode-test { background: var(--amber-light); border: 1px solid var(--amber-mid); }
+  .mode-live { background: var(--green-light); border: 1px solid #bbf7d0; }
+  .mode-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .badge-test { background: var(--amber-mid); color: #92400e; }
+  .badge-live { background: #bbf7d0; color: #14532d; }
+  .mode-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .mode-test h4 { color: #92400e; }
+  .mode-live h4 { color: #14532d; }
+  .mode-card ul { margin-left: 16px; }
+  .mode-card li { font-size: 12px; margin-bottom: 3px; }
+  .mode-test li { color: #92400e; }
+  .mode-live li { color: #166534; }
+
+  /* ── INSIGHT BOX ── */
+  .insight {
+    background: linear-gradient(135deg, var(--indigo-light), #eff4ff);
+    border: 1px solid #c7d2fe; border-radius: 12px;
+    padding: 16px 20px; margin-top: 20px;
+  }
+  .insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo); margin-bottom: 5px; }
+  .insight p { font-size: 13px; color: #312e81; font-weight: 500; }
+
+  /* ── ADDRESS ── */
+  .addr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .addr-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  .addr-flag { font-size: 22px; margin-bottom: 6px; display: block; }
+  .addr-row { margin-bottom: 6px; }
+  .addr-lbl { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--light-text); }
+  .addr-val { font-size: 12px; color: var(--text); font-family: 'Courier New', monospace; }
+  .addr-note { font-size: 11px; color: var(--muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+  /* ── BUREAU CARDS ── */
+  .bureau-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .bureau-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .bureau-name { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+  .bureau-card p { font-size: 11.5px; color: var(--muted); margin-bottom: 0; }
+
+  /* ── QUICK REF ── */
+  .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .qr-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .qr-term { font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 3px; }
+  .qr-def { font-size: 11.5px; color: var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 880px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 24px 20px 60px; }
+    .grid-2, .grid-3, .mode-grid, .bureau-grid { grid-template-columns: 1fr; }
+    .qr-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Training Guide</div>
+    <div class="sidebar-subtitle">Payment Systems</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-chapter">Chapter 1 — Basics</div>
+    <a class="nav-item" href="#ch1"><div class="nav-dot" style="background:#2563eb;"></div>Credit Card Fundamentals</a>
+    <div class="nav-chapter">Chapter 2 — Credit System</div>
+    <a class="nav-item" href="#ch2"><div class="nav-dot" style="background:#7c3aed;"></div>Credit & Scoring</a>
+    <div class="nav-chapter">Chapter 3 — Ecosystem</div>
+    <a class="nav-item" href="#ch3"><div class="nav-dot" style="background:#0d9488;"></div>Who Is Involved</a>
+    <div class="nav-chapter">Chapter 4 — Data</div>
+    <a class="nav-item" href="#ch4"><div class="nav-dot" style="background:#d97706;"></div>Transaction Data</a>
+    <div class="nav-chapter">Chapter 5 — Core Flow</div>
+    <a class="nav-item" href="#ch5"><div class="nav-dot" style="background:#dc2626;"></div>Auth & Settlement</a>
+    <div class="nav-chapter">Chapter 6 — Types</div>
+    <a class="nav-item" href="#ch6"><div class="nav-dot" style="background:#059669;"></div>Transaction Types</a>
+    <div class="nav-chapter">Chapter 7 — Visualization</div>
+    <a class="nav-item" href="#ch7"><div class="nav-dot" style="background:#7c3aed;"></div>End-to-End Flow</a>
+    <div class="nav-chapter">Chapter 8 — System</div>
+    <a class="nav-item" href="#ch8"><div class="nav-dot" style="background:#2563eb;"></div>Authorize.net</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">📘 Payment Systems — Complete Training Guide</div>
+    <h1>How Payment Systems Work</h1>
+    <p>A structured walkthrough from credit card basics to end-to-end transaction flow — designed to be read in order, from foundation to implementation.</p>
+    <div class="hero-chapters">
+      <span class="chapter-pill">1. Basics</span>
+      <span class="chapter-pill">2. Credit System</span>
+      <span class="chapter-pill">3. Ecosystem</span>
+      <span class="chapter-pill">4. Transaction Data</span>
+      <span class="chapter-pill">5. Core Flow</span>
+      <span class="chapter-pill">6. Transaction Types</span>
+      <span class="chapter-pill">7. Visualization</span>
+      <span class="chapter-pill">8. Authorize.net</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 1 — BASICS
+  ══════════════════════════════════════════ -->
+  <div id="ch1">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#2563eb;">1</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#2563eb;">Foundation</div>
+        <div class="chapter-title">Credit Card Fundamentals</div>
+        <div class="chapter-desc">Start here — everything else builds on understanding what a credit card is and how it differs from a debit card.</div>
+      </div>
+    </div>
+
+    <!-- 1.1 What is a Credit Card -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#2563eb;">1</div>
+        What is a Credit Card?
+      </div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">A credit card is a financial instrument that allows you to <strong style="color:var(--text);">borrow money from the card's issuing bank</strong> up to a pre-approved limit, to pay for purchases. You repay the bank later — either in full or in installments.</p>
+
+      <div class="grid-2">
+        <div class="card card-blue">
+          <h4>💳 How It Works</h4>
+          <ul>
+            <li>Bank lends you money to make purchases</li>
+            <li>You get a monthly statement with due date</li>
+            <li>Pay in full → no interest charged</li>
+            <li>Pay partially → interest applies on balance</li>
+            <li>Interest rates typically 18–36% per year</li>
+          </ul>
+        </div>
+        <div class="card card-indigo">
+          <h4>✅ Key Benefits</h4>
+          <ul>
+            <li>Builds credit history & score</li>
+            <li>Strong fraud protection (disputes)</li>
+            <li>Reward points, cashback, miles</li>
+            <li>Accepted globally via networks</li>
+            <li>Emergency purchasing power</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top:14px;">
+        <strong>Simple Example</strong>
+        <p>You buy a $500 laptop with your credit card. Your bank pays the merchant $500. You now owe the bank $500. If you pay by your due date, no interest. If you pay only $100, interest accrues on the remaining $400.</p>
+      </div>
+    </div>
+
+    <!-- 1.2 Credit Card Components -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#2563eb;">2</div>
+        Credit Card Components
+      </div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">Every element on a credit card has a specific purpose in the payment system.</p>
+
+      <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+        <div class="cc-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div class="cc-chip"></div>
+            <span style="font-size:9px; color:rgba(255,255,255,0.35); letter-spacing:0.05em;">PAYMENT BANK</span>
+          </div>
+          <div class="cc-num">4242  4242  4242  4242</div>
+          <div class="cc-bottom">
+            <div>
+              <div class="cc-label-sm">Card Holder</div>
+              <div class="cc-name">JOHN D. SMITH</div>
+              <div style="margin-top:6px;">
+                <div class="cc-label-sm">Valid Thru</div>
+                <div class="cc-val">12 / 28</div>
+              </div>
+            </div>
+            <div class="cc-net">VISA</div>
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:200px;">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div class="card" style="padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:12px; font-weight:700; color:var(--text);">Card Number (PAN)</span>
+                <span class="tag tag-blue" style="font-family:'Courier New',monospace;">4242 4242 4242 4242</span>
+              </div>
+              <p style="font-size:11px; margin-top:4px;">16 digits (Visa/MC), 15 (AmEx). First 6 = BIN — identifies the bank &amp; network.</p>
+            </div>
+            <div class="card" style="padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:12px; font-weight:700; color:var(--text);">Expiry Date</span>
+                <span class="tag tag-blue" style="font-family:'Courier New',monospace;">12 / 2028</span>
+              </div>
+              <p style="font-size:11px; margin-top:4px;">Card valid through end of that month. Expired cards are auto-rejected by gateways.</p>
+            </div>
+            <div class="card" style="padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:12px; font-weight:700; color:var(--text);">CVV / CVC Code</span>
+                <span class="tag tag-rose" style="font-family:'Courier New',monospace;">3 or 4 digits</span>
+              </div>
+              <p style="font-size:11px; margin-top:4px;">Security code. On back for Visa/MC (3 digits), front for AmEx (4 digits). Never stored after auth.</p>
+            </div>
+            <div class="card" style="padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:12px; font-weight:700; color:var(--text);">Chip (EMV)</span>
+                <span class="tag tag-amber">Security</span>
+              </div>
+              <p style="font-size:11px; margin-top:4px;">Generates a unique code for each transaction. Much harder to clone than magnetic stripe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:10px;">Card Number Prefixes (BIN)</div>
+      <div class="network-row">
+        <div class="net-pill"><div class="net-name" style="color:#1a1f71;">VISA</div><p>Starts with</p><div class="bin">4xxxx...</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#eb001b;">Mastercard</div><p>Starts with</p><div class="bin">51–55</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#2e77bc;">AmEx</div><p>Starts with</p><div class="bin">34 or 37</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#004a97;">Diners</div><p>Starts with</p><div class="bin">300–305, 36</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#003087;">JCB</div><p>Starts with</p><div class="bin">3528–3589</div></div>
+      </div>
+    </div>
+
+    <!-- 1.3 Credit vs Debit -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#2563eb;">3</div>
+        Credit Card vs Debit Card
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>💳 Credit Card</th>
+            <th>🏦 Debit Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Money Source</td><td><span class="tag tag-blue">Bank's money (loan)</span></td><td><span class="tag tag-amber">Your own money</span></td></tr>
+          <tr><td>Repayment</td><td>Monthly billing cycle</td><td>Instant deduction</td></tr>
+          <tr><td>Spending Limit</td><td>Credit limit set by bank</td><td>Your account balance</td></tr>
+          <tr><td>Interest</td><td><span class="tag tag-rose">Yes, if not paid in full</span></td><td><span class="tag tag-green">No interest</span></td></tr>
+          <tr><td>Builds Credit Score</td><td><span class="tag tag-green">Yes</span></td><td><span class="tag tag-slate">No</span></td></tr>
+          <tr><td>Fraud Protection</td><td><span class="tag tag-green">Strong (easy disputes)</span></td><td><span class="tag tag-rose">Weaker (direct bank)</span></td></tr>
+          <tr><td>Rewards / Cashback</td><td><span class="tag tag-green">Often available</span></td><td><span class="tag tag-slate">Rarely available</span></td></tr>
+          <tr><td>Overdraft Risk</td><td><span class="tag tag-slate">No (credit limit)</span></td><td><span class="tag tag-rose">Yes (if no buffer)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 2 — CREDIT SYSTEM
+  ══════════════════════════════════════════ -->
+  <div id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#7c3aed;">2</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#7c3aed;">Credit System</div>
+        <div class="chapter-title">Why Banks Trust You</div>
+        <div class="chapter-desc">Before approving a card or setting a credit limit, banks evaluate your financial trustworthiness through credit scores and history.</div>
+      </div>
+    </div>
+
+    <!-- 2.1 Credit Limit -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#7c3aed;">1</div>
+        Credit Limit
+      </div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">The credit limit is the <strong style="color:var(--text);">maximum amount you can borrow</strong> on your credit card. Banks set it based on multiple factors.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h4>💰 Income</h4>
+          <p>Higher income → bank is comfortable extending more credit. Income determines repayment ability.</p>
+        </div>
+        <div class="card">
+          <h4>📊 Credit Score</h4>
+          <p>Higher score = proven track record = higher limit offered. Below 600 = likely only secured card.</p>
+        </div>
+        <div class="card">
+          <h4>📋 Credit History</h4>
+          <p>Past payment behavior, how long you've had credit, any defaults or late payments.</p>
+        </div>
+        <div class="card">
+          <h4>📉 Debt-to-Income</h4>
+          <p>If you already carry heavy loan obligations, the bank may limit new credit exposure.</p>
+        </div>
+        <div class="card">
+          <h4>⚖️ Utilization</h4>
+          <p>Using &lt;30% of your limit is ideal. High utilization signals financial stress to lenders.</p>
+        </div>
+        <div class="card">
+          <h4>🏦 Bank Relationship</h4>
+          <p>Existing account holders with good standing often get better limits on new cards.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 Credit Score -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#7c3aed;">2</div>
+        Credit Score System — FICO &amp; CIBIL
+      </div>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="card card-blue">
+          <h4 style="font-size:15px; color:#1e40af;">FICO Score <span style="font-size:11px; font-weight:400;">(United States)</span></h4>
+          <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; font-size:12px; color:var(--slate);">
+            <span>Range: <strong style="font-family:'Courier New',monospace; color:var(--blue);">300–850</strong></span>
+            <span>Good: <strong style="color:var(--green);">670+</strong></span>
+            <span>Excellent: <strong style="color:var(--green);">800+</strong></span>
+          </div>
+          <p style="margin-top:8px;">Used by 90% of US lenders. Created by Fair Isaac Corporation. Data pulled from all 3 major bureaus.</p>
+        </div>
+        <div class="card card-indigo">
+          <h4 style="font-size:15px; color:#312e81;">CIBIL Score <span style="font-size:11px; font-weight:400;">(India)</span></h4>
+          <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; font-size:12px; color:var(--slate);">
+            <span>Range: <strong style="font-family:'Courier New',monospace; color:var(--indigo);">300–900</strong></span>
+            <span>Good: <strong style="color:var(--green);">750+</strong></span>
+            <span>Excellent: <strong style="color:var(--green);">850+</strong></span>
+          </div>
+          <p style="margin-top:8px;">Managed by TransUnion CIBIL. Used by all RBI-registered Indian banks and NBFCs for loan/card decisions.</p>
+        </div>
+      </div>
+
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin:16px 0 10px;">FICO Score Ranges</div>
+      <div class="score-spectrum"></div>
+      <div class="score-labels"><span>300</span><span>580</span><span>670</span><span>740</span><span>800</span><span>850</span></div>
+      <div class="score-ranges">
+        <div class="sr sr-poor"><span class="num">300–579</span><span class="lbl">Poor</span></div>
+        <div class="sr sr-fair"><span class="num">580–669</span><span class="lbl">Fair</span></div>
+        <div class="sr sr-good"><span class="num">670–739</span><span class="lbl">Good</span></div>
+        <div class="sr sr-vg"><span class="num">740–799</span><span class="lbl">Very Good</span></div>
+        <div class="sr sr-exc"><span class="num">800–850</span><span class="lbl">Exceptional</span></div>
+      </div>
+
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin:20px 0 10px;">CIBIL Score Ranges</div>
+      <div class="score-spectrum" style="background:linear-gradient(90deg,#ef4444 0%,#f59e0b 22%,#eab308 44%,#84cc16 67%,#22c55e 100%);"></div>
+      <div class="score-labels"><span>300</span><span>500</span><span>600</span><span>700</span><span>800</span><span>900</span></div>
+      <div class="score-ranges">
+        <div class="sr sr-poor"><span class="num">300–549</span><span class="lbl">Poor</span></div>
+        <div class="sr sr-fair"><span class="num">550–649</span><span class="lbl">Fair</span></div>
+        <div class="sr sr-good"><span class="num">650–749</span><span class="lbl">Good</span></div>
+        <div class="sr sr-vg"><span class="num">750–849</span><span class="lbl">Very Good</span></div>
+        <div class="sr sr-exc"><span class="num">850–900</span><span class="lbl">Excellent</span></div>
+      </div>
+    </div>
+
+    <!-- 2.3 Factors -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#7c3aed;">3</div>
+        Factors Affecting Credit Score
+      </div>
+      <div class="fico-factors">
+        <div class="fico-pie"></div>
+        <div class="fico-legend">
+          <div class="fico-item"><div class="fico-dot" style="background:#2563eb;"></div><strong>35%</strong> — Payment History (most critical)</div>
+          <div class="fico-item"><div class="fico-dot" style="background:#0d9488;"></div><strong>30%</strong> — Amounts Owed / Credit Utilization</div>
+          <div class="fico-item"><div class="fico-dot" style="background:#16a34a;"></div><strong>15%</strong> — Length of Credit History</div>
+          <div class="fico-item"><div class="fico-dot" style="background:#d97706;"></div><strong>10%</strong> — Credit Mix (cards, loans, etc.)</div>
+          <div class="fico-item"><div class="fico-dot" style="background:#e11d48;"></div><strong>10%</strong> — New Credit (hard inquiries)</div>
+        </div>
+      </div>
+      <div class="callout callout-amber" style="margin-top:14px;">
+        <strong>⚠️ CIBIL Score factors are similar</strong>
+        <p>Payment history (~35%), credit utilization (~25%), credit age (~20%), credit mix and new inquiries (~20%). Paying even one EMI late can drop your score by 50–100 points.</p>
+      </div>
+    </div>
+
+    <!-- 2.4 Credit Bureaus -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#7c3aed;">4</div>
+        Credit Bureaus
+      </div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">Credit bureaus are agencies that collect and maintain your credit history. Lenders report to them; they calculate your score.</p>
+      <div class="bureau-grid">
+        <div class="bureau-card">
+          <div class="bureau-name" style="color:#cc0000;">Equifax</div>
+          <p>Founded 1899. Atlanta, GA. Uses FICO 5 model. One of the oldest credit agencies globally.</p>
+        </div>
+        <div class="bureau-card">
+          <div class="bureau-name" style="color:#003087;">Experian</div>
+          <p>Global presence. Costa Mesa, CA. Uses FICO 2 model. Largest bureau by global reach.</p>
+        </div>
+        <div class="bureau-card">
+          <div class="bureau-name" style="color:#1b4d9b;">TransUnion</div>
+          <p>Chicago, IL. Uses FICO 4 model. Also used for employment &amp; tenant screening.</p>
+        </div>
+      </div>
+      <div class="callout callout-blue" style="margin-top:14px;">
+        <strong>India Note</strong>
+        <p>India has 4 RBI-licensed bureaus: <strong>CIBIL</strong> (most used), <strong>Experian India</strong>, <strong>Equifax India</strong>, and <strong>CRIF High Mark</strong>. Banks typically check CIBIL first.</p>
+      </div>
+    </div>
+
+    <!-- 2.5 How Lenders Report -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#7c3aed;">5</div>
+        How Lenders Report Data
+      </div>
+      <div class="flow">
+        <div class="flow-item">
+          <div class="flow-circle" style="background:#7c3aed;">1</div>
+          <div class="flow-body">
+            <strong>New Account Opened</strong>
+            <span>When you open a credit card, auto loan, home loan — the lender reports account details to all bureaus within 30–45 days.</span>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-circle" style="background:#7c3aed;">2</div>
+          <div class="flow-body">
+            <strong>Monthly Reporting (End of Every Month)</strong>
+            <span>Every lender sends your: current balance, credit limit, payment status (current / 30 days late / 60 days late / default), EMI amount. This is the heartbeat of your credit file.</span>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-circle" style="background:#7c3aed;">3</div>
+          <div class="flow-body">
+            <strong>Bureau Updates Your Score</strong>
+            <span>After receiving monthly reports, bureaus recalculate your score. Scores can move up or down month to month based on your behavior.</span>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-circle" style="background:#7c3aed;">4</div>
+          <div class="flow-body">
+            <strong>New Lender Pulls Your Report (Hard Inquiry)</strong>
+            <span>When you apply for new credit, the lender does a hard inquiry which temporarily lowers your score by ~5–10 points. Multiple inquiries in 30 days signal financial distress.</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:14px;">
+        <div class="callout callout-green">
+          <strong>✅ Good Payment</strong>
+          <p>Paid on time → bureau records "Current." Positive marks stay for 10 years.</p>
+        </div>
+        <div class="callout callout-rose">
+          <strong>❌ Late / Missed Payment</strong>
+          <p>30+ days late → negative mark filed. Stays on your report for 7 years in US, 3 years in India.</p>
+        </div>
+      </div>
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin:16px 0 10px;">Lender Types That Report</div>
+      <div class="grid-auto">
+        <div class="card" style="text-align:center; padding:12px 8px;">
+          <div style="font-size:20px; margin-bottom:4px;">💳</div>
+          <strong style="font-size:12px;">Credit Cards</strong>
+          <p style="font-size:11px;">Banks, NBFCs, Fintech</p>
+        </div>
+        <div class="card" style="text-align:center; padding:12px 8px;">
+          <div style="font-size:20px; margin-bottom:4px;">🚗</div>
+          <strong style="font-size:12px;">Auto Loan</strong>
+          <p style="font-size:11px;">Car finance companies</p>
+        </div>
+        <div class="card" style="text-align:center; padding:12px 8px;">
+          <div style="font-size:20px; margin-bottom:4px;">🏠</div>
+          <strong style="font-size:12px;">Home Loan</strong>
+          <p style="font-size:11px;">Banks &amp; HFCs</p>
+        </div>
+        <div class="card" style="text-align:center; padding:12px 8px;">
+          <div style="font-size:20px; margin-bottom:4px;">💵</div>
+          <strong style="font-size:12px;">Personal Loan</strong>
+          <p style="font-size:11px;">Banks, digital lenders</p>
+        </div>
+        <div class="card" style="text-align:center; padding:12px 8px;">
+          <div style="font-size:20px; margin-bottom:4px;">🛒</div>
+          <strong style="font-size:12px;">Retail / Merchant</strong>
+          <p style="font-size:11px;">Bajaj Finance, Pay Later</p>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">👉 User Now Understands</div>
+        <p>"Why the bank allows or declines a transaction — and why the cardholder's credit history matters."</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 3 — ECOSYSTEM
+  ══════════════════════════════════════════ -->
+  <div id="ch3">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#0d9488;">3</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#0d9488;">Payment Ecosystem</div>
+        <div class="chapter-title">Who Is Involved?</div>
+        <div class="chapter-desc">Every payment involves multiple parties. Understanding each role prevents confusion when diagnosing transaction failures.</div>
+      </div>
+    </div>
+
+    <!-- 3.1 Payment Gateway -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#0d9488;">1</div>
+        Payment Gateway — Authorize.net
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">A payment gateway is the <strong style="color:var(--text);">technology layer</strong> that connects your website or application to the banking system. It securely captures, encrypts, and transmits card data.</p>
+          <ul style="color:var(--muted); font-size:12.5px; margin-left:16px; margin-bottom:12px;">
+            <li>Encrypts card data (SSL/TLS)</li>
+            <li>Sends transaction to payment processor</li>
+            <li>Returns approval/decline code to merchant</li>
+            <li>Handles fraud detection</li>
+            <li>Manages tokenization (replaces card data)</li>
+          </ul>
+          <div class="callout callout-green">
+            <strong>Analogy</strong>
+            <p>The gateway is like the POS terminal / cash register at a store. It handles the "handshake" between customer and bank.</p>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#f0fdfa,#e6fffa); border:1px solid #99f6e4; border-radius:10px; padding:16px;">
+          <div style="font-size:18px; font-weight:800; color:#0d9488; margin-bottom:6px;">Authorize.net</div>
+          <p style="font-size:12px; color:#0f766e; margin-bottom:10px;">Founded 1996. Owned by Visa Inc. One of the most trusted gateways — we use this for all our transactions.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:5px;">
+            <span class="tag tag-green">PCI DSS Compliant</span>
+            <span class="tag tag-green">SSL Encrypted</span>
+            <span class="tag tag-green">Tokenization</span>
+            <span class="tag tag-green">Fraud Detection</span>
+            <span class="tag tag-green">Recurring Billing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.2 Payment Networks -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#0d9488;">2</div>
+        Payment Networks
+      </div>
+      <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">Payment networks are the <strong style="color:var(--text);">global rails</strong> that money travels on. They route transactions between issuing and acquiring banks and set rules, fees, and dispute processes.</p>
+      <div class="network-row">
+        <div class="net-pill"><div class="net-name" style="color:#1a1f71;">VISA</div><p>World's largest. 200+ countries.</p><div class="bin">Starts: 4</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#eb001b;">Master<span style="color:#f79e1b;">card</span></div><p>2nd largest. Strong globally.</p><div class="bin">Starts: 51–55</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#2e77bc;">AmEx</div><p>Premium. Issues own cards.</p><div class="bin">Starts: 34, 37</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#004a97;">Diners</div><p>First charge card (1950).</p><div class="bin">Starts: 36, 300-305</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#003087;">JCB</div><p>Japan Credit Bureau.</p><div class="bin">Starts: 3528–3589</div></div>
+        <div class="net-pill"><div class="net-name" style="color:#888;">enRoute</div><p>Canadian (discontinued).</p><div class="bin">Starts: 2014, 2149</div></div>
+      </div>
+      <div class="callout callout-blue" style="margin-top:12px;">
+        <strong>Key Insight</strong>
+        <p>Visa and Mastercard do NOT issue cards. They provide the infrastructure only. AmEx is special — it issues its own cards AND runs its own network. That's why AmEx typically has higher merchant fees.</p>
+      </div>
+    </div>
+
+    <!-- 3.3 Issuing Bank -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#0d9488;">3</div>
+        Issuing Bank (Cardholder's Bank)
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">The bank that <strong style="color:var(--text);">issues the credit or debit card</strong> to the customer. Takes on the credit risk and manages the cardholder relationship.</p>
+          <ul style="color:var(--muted); font-size:12.5px; margin-left:16px;">
+            <li>Issues the physical or virtual card</li>
+            <li>Sets the credit limit</li>
+            <li>Approves or declines transactions</li>
+            <li>Holds or releases authorized funds</li>
+            <li>Handles cardholder fraud disputes</li>
+          </ul>
+        </div>
+        <div class="card card-blue">
+          <h4>Examples</h4>
+          <p>Chase Bank, Citi, Bank of America, Wells Fargo (US)</p>
+          <p style="margin-top:6px;">HDFC Bank, ICICI Bank, SBI, Axis Bank (India)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.4 Acquiring Bank -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#0d9488;">4</div>
+        Acquiring Bank (Merchant Bank)
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">The bank that <strong style="color:var(--text);">processes payments on behalf of the merchant</strong> (the business). Receives funds from issuing bank and deposits into merchant's account.</p>
+          <ul style="color:var(--muted); font-size:12.5px; margin-left:16px;">
+            <li>Provides the merchant account</li>
+            <li>Receives settled funds from issuing bank</li>
+            <li>Deposits net amount to merchant</li>
+            <li>Charges merchant processing fees</li>
+            <li>Handles chargebacks from merchant side</li>
+          </ul>
+        </div>
+        <div class="card card-teal">
+          <h4>Examples</h4>
+          <p>Wells Fargo Merchant Services, First Data, Chase Paymentech (US)</p>
+          <p style="margin-top:6px;">Stripe, Square, Razorpay (act as merchant bank + gateway)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.5 Gateway vs Network -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#0d9488;">5</div>
+        Gateway vs Network — The Key Difference
+      </div>
+      <table>
+        <thead>
+          <tr><th>Aspect</th><th>🔌 Payment Gateway</th><th>🌐 Payment Network</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>What it is</td><td>Technology / software layer</td><td>Global financial infrastructure</td></tr>
+          <tr><td>Function</td><td>Captures and transmits card data securely</td><td>Routes transactions between banks</td></tr>
+          <tr><td>Analogy</td><td>The POS terminal / door</td><td>The highway / road system</td></tr>
+          <tr><td>Examples</td><td>Authorize.net, Stripe, Braintree, PayPal</td><td>Visa, Mastercard, AmEx, JCB</td></tr>
+          <tr><td>Who interacts with it</td><td>Merchant's website/app directly</td><td>Banks interact with each other via it</td></tr>
+          <tr><td>Sets transaction rules?</td><td>No</td><td>Yes — interchange rates, dispute rules</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-green" style="margin-top:12px;">
+        <strong>Simple Mental Model</strong>
+        <p>Gateway = the door to the payment system. Network = the road money travels on between banks.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 4 — TRANSACTION DATA
+  ══════════════════════════════════════════ -->
+  <div id="ch4">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#d97706;">4</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#d97706;">Transaction Data</div>
+        <div class="chapter-title">What Information Is Required?</div>
+        <div class="chapter-desc">Every payment requires specific data fields. Getting these wrong causes declines and AVS failures.</div>
+      </div>
+    </div>
+
+    <!-- 4.1 Card Details -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#d97706;">1</div>
+        Credit Card Details Required
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="card" style="padding:12px 14px; display:flex; align-items:flex-start; gap:12px;">
+          <span class="tag tag-blue" style="margin-top:1px; white-space:nowrap;">Card Number</span>
+          <div>
+            <strong style="font-size:12.5px; color:var(--text);">16-digit Primary Account Number (PAN)</strong>
+            <p style="font-size:11.5px;">Unique to each card. First 6 digits = BIN (identifies bank &amp; network). Never store raw card numbers — use tokenization.</p>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px; display:flex; align-items:flex-start; gap:12px;">
+          <span class="tag tag-blue" style="margin-top:1px; white-space:nowrap;">Expiry Date</span>
+          <div>
+            <strong style="font-size:12.5px; color:var(--text);">Month and Year (MM/YYYY)</strong>
+            <p style="font-size:11.5px;">Card valid through the last day of that month. Gateways auto-reject expired cards. Format: 12/2028.</p>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px; display:flex; align-items:flex-start; gap:12px;">
+          <span class="tag tag-rose" style="margin-top:1px; white-space:nowrap;">CVV Code</span>
+          <div>
+            <strong style="font-size:12.5px; color:var(--text);">Card Verification Value — 3 or 4 digits</strong>
+            <p style="font-size:11.5px;">Back of card for Visa/Mastercard (3 digits). Front of card for AmEx (4 digits). Must not be stored after authorization per PCI DSS.</p>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px; display:flex; align-items:flex-start; gap:12px;">
+          <span class="tag tag-amber" style="margin-top:1px; white-space:nowrap;">Billing Address</span>
+          <div>
+            <strong style="font-size:12.5px; color:var(--text);">Address registered with the issuing bank</strong>
+            <p style="font-size:11.5px;">Used for AVS (Address Verification System). Mismatches trigger soft declines. Must match exactly what the bank has on file.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:10px;">Full Billing Address Fields</div>
+      <table>
+        <thead><tr><th>Field</th><th>Example (US)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Billing Street</td><td>123 Main Street, Apt 4B</td><td>Full street address as registered with bank</td></tr>
+          <tr><td>Billing City</td><td>New York</td><td>City of cardholder's registered address</td></tr>
+          <tr><td>Billing State / Province</td><td>NY</td><td>2-letter code for US; Province code for Canada</td></tr>
+          <tr><td>Billing ZIP / Postal Code</td><td>10001</td><td>Most critical for AVS. Mismatch = likely decline.</td></tr>
+          <tr><td>Country</td><td>US</td><td>2-letter ISO country code</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4.2 Address Types -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#d97706;">2</div>
+        Address Types by Country
+      </div>
+      <div class="callout callout-amber" style="margin-bottom:14px;">
+        <strong>🗺️ State vs Province</strong>
+        <p>United States uses <strong>States</strong> (50 states — NY, CA, TX...). Canada uses <strong>Provinces</strong> (13 — ON, BC, QC...). Never use "State" field for Canadian addresses.</p>
+      </div>
+      <div class="addr-grid">
+        <div class="addr-card">
+          <span class="addr-flag">🇺🇸</span>
+          <strong style="font-size:13px; color:var(--text); display:block; margin-bottom:8px;">United States</strong>
+          <div class="addr-row"><div class="addr-lbl">Street</div><div class="addr-val">123 Main St, Apt 4B</div></div>
+          <div class="addr-row"><div class="addr-lbl">City</div><div class="addr-val">New York</div></div>
+          <div class="addr-row"><div class="addr-lbl">State (2-letter)</div><div class="addr-val">NY</div></div>
+          <div class="addr-row"><div class="addr-lbl">ZIP Code</div><div class="addr-val">10001</div></div>
+          <div class="addr-note">50 States. ZIP = 5 digits. Strong AVS verification.</div>
+        </div>
+        <div class="addr-card">
+          <span class="addr-flag">🇨🇦</span>
+          <strong style="font-size:13px; color:var(--text); display:block; margin-bottom:8px;">Canada</strong>
+          <div class="addr-row"><div class="addr-lbl">Street</div><div class="addr-val">456 Queen St West</div></div>
+          <div class="addr-row"><div class="addr-lbl">City</div><div class="addr-val">Toronto</div></div>
+          <div class="addr-row"><div class="addr-lbl">Province (2-letter)</div><div class="addr-val">ON</div></div>
+          <div class="addr-row"><div class="addr-lbl">Postal Code</div><div class="addr-val">M5V 2T6</div></div>
+          <div class="addr-note">Use Province, NOT State. Postal = A1A 1A1 format.</div>
+        </div>
+        <div class="addr-card">
+          <span class="addr-flag">🇮🇳</span>
+          <strong style="font-size:13px; color:var(--text); display:block; margin-bottom:8px;">India</strong>
+          <div class="addr-row"><div class="addr-lbl">Street</div><div class="addr-val">Flat 302, Banjara Hills</div></div>
+          <div class="addr-row"><div class="addr-lbl">City</div><div class="addr-val">Hyderabad</div></div>
+          <div class="addr-row"><div class="addr-lbl">State (full name)</div><div class="addr-val">Telangana</div></div>
+          <div class="addr-row"><div class="addr-lbl">PIN Code (6 digits)</div><div class="addr-val">500034</div></div>
+          <div class="addr-note">PIN Code not ZIP. State = full name. Country = IN.</div>
+        </div>
+        <div class="addr-card">
+          <span class="addr-flag">🇮🇹</span>
+          <strong style="font-size:13px; color:var(--text); display:block; margin-bottom:8px;">Italy (EU Example)</strong>
+          <div class="addr-row"><div class="addr-lbl">Via (Street)</div><div class="addr-val">Via Roma 45</div></div>
+          <div class="addr-row"><div class="addr-lbl">City (Città)</div><div class="addr-val">Milano</div></div>
+          <div class="addr-row"><div class="addr-lbl">Province (abbreviated)</div><div class="addr-val">MI</div></div>
+          <div class="addr-row"><div class="addr-lbl">CAP (5-digit postal)</div><div class="addr-val">20121</div></div>
+          <div class="addr-note">EU uses postal codes. AVS less strict for EU cards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 5 — CORE FLOW
+  ══════════════════════════════════════════ -->
+  <div id="ch5">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#dc2626;">5</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#dc2626;">Core Transaction Flow</div>
+        <div class="chapter-title">Authentication, Authorization &amp; Settlement</div>
+        <div class="chapter-desc">The most important section. These concepts apply to every single transaction.</div>
+      </div>
+    </div>
+
+    <!-- 5.1 Auth vs Authentication -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#dc2626;">1</div>
+        Authentication vs Authorization
+      </div>
+      <div class="grid-2">
+        <div class="card card-blue">
+          <h4>🔐 Authentication — "Who Are You?"</h4>
+          <p>Verifying the cardholder's <strong style="color:var(--blue);">identity</strong>. Ensures the person making the payment is the legitimate cardholder.</p>
+          <ul style="margin-top:8px;">
+            <li>CVV verification</li>
+            <li>3D Secure (OTP, biometric)</li>
+            <li>Verified by Visa / Mastercard SecureCode</li>
+            <li>PIN entry (chip cards)</li>
+          </ul>
+        </div>
+        <div class="card card-rose">
+          <h4>✅ Authorization — "Can They Pay?"</h4>
+          <p>Checking with the issuing bank that the cardholder has <strong style="color:var(--rose);">sufficient funds/credit</strong> and the transaction is approved.</p>
+          <ul style="margin-top:8px;">
+            <li>Bank checks available balance/credit</li>
+            <li>Checks for fraud flags</li>
+            <li>Approves or declines</li>
+            <li>Places a hold on the authorized amount</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout-amber" style="margin-top:12px;">
+        <strong>Key Order</strong>
+        <p>Authentication happens first (who are you?), then Authorization (do you have the money?). A transaction can be authenticated but still declined for insufficient funds.</p>
+      </div>
+    </div>
+
+    <!-- 5.2 Auth vs Settlement -->
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#dc2626;">2</div>
+        Authorization vs Settlement
+      </div>
+      <div class="grid-2">
+        <div class="card card-amber">
+          <h4>🔒 Authorization — Temporary Hold</h4>
+          <p>Bank says "Yes, approved." Money is <strong style="color:var(--amber);">reserved but NOT transferred.</strong></p>
+          <ul style="margin-top:8px;">
+            <li>Happens in ~2 seconds</li>
+            <li>Customer sees "Pending" on statement</li>
+            <li>Hold expires in ~7 days if not captured</li>
+            <li>Merchant receives authorization code</li>
+            <li>No money has actually moved</li>
+          </ul>
+        </div>
+        <div class="card card-green">
+          <h4>✅ Settlement — Actual Transfer</h4>
+          <p>The <strong style="color:var(--green);">actual movement of funds</strong> from issuing bank to merchant's acquiring bank.</p>
+          <ul style="margin-top:8px;">
+            <li>Happens 1–3 business days after capture</li>
+            <li>Charge becomes permanent on statement</li>
+            <li>Batched and processed (usually end of day)</li>
+            <li>Fees are deducted at this stage</li>
+            <li>Funds deposited to merchant account</li>
+          </ul>
+        </div>
+      </div>
+      <table style="margin-top:14px;">
+        <thead><tr><th>Stage</th><th>Timing</th><th>Money Moved?</th><th>Customer Statement</th></tr></thead>
+        <tbody>
+          <tr><td>Authorization</td><td>~2 seconds</td><td><span class="tag tag-rose">No</span></td><td>Shows as "Pending"</td></tr>
+          <tr><td>Capture</td><td>Same day or later</td><td><span class="tag tag-amber">Queued</span></td><td>Still "Pending"</td></tr>
+          <tr><td>Settlement</td><td>1–3 business days</td><td><span class="tag tag-green">Yes — Complete</span></td><td>Shows as "Posted"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 6 — TRANSACTION TYPES
+  ══════════════════════════════════════════ -->
+  <div id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#059669;">6</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#059669;">Transaction Types</div>
+        <div class="chapter-title">Real Business Logic</div>
+        <div class="chapter-desc">Different business scenarios require different transaction types. These are all available in Authorize.net.</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div style="background:linear-gradient(135deg,#f0fdf4,#ecfdf5); border:1px solid #bbf7d0; border-radius:10px; padding:14px 16px; margin-bottom:18px;">
+        <div style="font-size:12px; font-weight:700; color:#059669; margin-bottom:8px;">🧠 Mental Model — Remember This</div>
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#065f46;">
+          <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:6px 10px; text-align:center;"><strong>Authorize</strong><br/><span style="font-size:10px;">"Do they have the money?"</span></div>
+          <span style="color:#6ee7b7;">→</span>
+          <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:6px 10px; text-align:center;"><strong>Capture</strong><br/><span style="font-size:10px;">"Charge them now"</span></div>
+          <span style="color:#6ee7b7;">→</span>
+          <div style="background:white; border:1px solid #bbf7d0; border-radius:6px; padding:6px 10px; text-align:center;"><strong>Settle</strong><br/><span style="font-size:10px;">"Move money to merchant"</span></div>
+        </div>
+      </div>
+
+      <div class="auth-grid">
+        <div class="auth-card c1">
+          <div class="auth-num">Type 01</div>
+          <h4>Auth Only</h4>
+          <p>Checks funds and places a hold only. No capture → no money collected.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Hotels, car rentals, gas stations pre-auth</div>
+        </div>
+        <div class="auth-card c2">
+          <div class="auth-num">Type 02</div>
+          <h4>Auth + Capture (Delayed)</h4>
+          <p>Authorize first → capture later when ready. Two separate steps.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Restaurants (tip added later), e-commerce (charge on ship)</div>
+        </div>
+        <div class="auth-card c3">
+          <div class="auth-num">Type 03</div>
+          <h4>Sale (Immediate)</h4>
+          <p>Auth and capture happen instantly in one step. Most common type.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Retail checkout, most online purchases, standard billing</div>
+        </div>
+        <div class="auth-card c4">
+          <div class="auth-num">Type 04</div>
+          <h4>Pre-Authorization</h4>
+          <p>Auth with flexibility to adjust the amount up or down before capture.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Hotels (final bill differs from check-in estimate), fuel pumps</div>
+        </div>
+        <div class="auth-card c5">
+          <div class="auth-num">Type 05</div>
+          <h4>Partial Capture</h4>
+          <p>Capture less than the authorized amount. Remaining hold released.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Out-of-stock items: auth $200, capture only $150</div>
+        </div>
+        <div class="auth-card c6">
+          <div class="auth-num">Type 06</div>
+          <h4>Multiple Capture</h4>
+          <p>One authorization → multiple captures over time.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Split shipments: capture portions as each ships</div>
+        </div>
+        <div class="auth-card c7">
+          <div class="auth-num">Type 07</div>
+          <h4>Void</h4>
+          <p>Cancels an auth or uncaptured transaction. Hold disappears, no settlement.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Customer cancels order before capture / correct a mistake</div>
+        </div>
+        <div class="auth-card c8">
+          <div class="auth-num">Type 08</div>
+          <h4>Refund (Post-Settlement)</h4>
+          <p>Returns money after settlement. Creates new reverse transaction.</p>
+          <div class="auth-usecase"><strong>Use Case</strong>Customer returns item after payment already settled</div>
+        </div>
+      </div>
+
+      <div class="callout callout-rose" style="margin-top:16px;">
+        <strong>⚠️ Void vs Refund — Critical Difference</strong>
+        <p><strong>Void</strong> = before settlement. Auth cancelled, hold removed, no money moved.<br/><strong>Refund</strong> = after settlement. Money already transferred to merchant, then returned to customer's card (takes 3–5 business days).</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 7 — END-TO-END FLOW
+  ══════════════════════════════════════════ -->
+  <div id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#7c3aed;">7</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#7c3aed;">End-to-End Flow</div>
+        <div class="chapter-title">Full Payment Visualization</div>
+        <div class="chapter-desc">The complete journey of a payment — from customer to merchant's bank account.</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:12px;">High-Level Flow</div>
+      <div class="big-flow">
+        <div class="bf-step"><div class="bf-icon">👤</div><span class="bf-label">Customer</span><div class="bf-sub">Enters card</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">🔌</div><span class="bf-label">Gateway</span><div class="bf-sub">Authorize.net</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">⚙️</div><span class="bf-label">Processor</span><div class="bf-sub">Routes request</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">🌐</div><span class="bf-label">Network</span><div class="bf-sub">Visa / MC</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">🏛️</div><span class="bf-label">Issuing Bank</span><div class="bf-sub">Approves / Declines</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">✅</div><span class="bf-label">Auth Code</span><div class="bf-sub">Returned to merchant</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">📦</div><span class="bf-label">Capture</span><div class="bf-sub">Merchant confirms</div></div>
+        <div class="bf-arrow">→</div>
+        <div class="bf-step"><div class="bf-icon">💰</div><span class="bf-label">Settlement</span><div class="bf-sub">Money transferred</div></div>
+      </div>
+
+      <hr class="divider"/>
+
+      <div class="grid-2">
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:10px;">⚡ Step-by-Step with Timing</div>
+          <div class="flow">
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#7c3aed; font-size:10px;">T+0</div>
+              <div class="flow-body"><strong>Customer enters card &amp; clicks Pay</strong><span>Data encrypted immediately by gateway</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#7c3aed; font-size:9px;">0.5s</div>
+              <div class="flow-body"><strong>Gateway sends auth request</strong><span>Authorize.net → Processor → Card Network</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#7c3aed; font-size:9px;">1s</div>
+              <div class="flow-body"><strong>Issuing bank checks the card</strong><span>Balance check, fraud flags, spending limits, card validity</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#7c3aed; font-size:9px;">2s</div>
+              <div class="flow-body"><strong>Approved / Declined returned</strong><span>Response travels back: Bank → Network → Gateway → Merchant</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#059669; font-size:9px;">EOD</div>
+              <div class="flow-body"><strong>Merchant batches &amp; captures</strong><span>End of business day — all approved transactions captured in batch</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#059669; font-size:9px;">1–3d</div>
+              <div class="flow-body"><strong>Settlement — money arrives</strong><span>Issuing bank transfers net funds to merchant's acquiring bank account</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px;">💸 Fee Breakdown per Transaction</div>
+          <div class="card" style="padding:12px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;"><span style="color:var(--muted);">Interchange (to issuing bank)</span><span style="color:var(--blue); font-family:'Courier New',monospace; font-weight:700;">~1.5–2.0%</span></div>
+            <div style="height:4px; background:var(--bg); border-radius:2px;"><div style="width:67%; height:100%; background:var(--blue); border-radius:2px;"></div></div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;"><span style="color:var(--muted);">Network fee (Visa / Mastercard)</span><span style="color:var(--teal); font-family:'Courier New',monospace; font-weight:700;">~0.10%</span></div>
+            <div style="height:4px; background:var(--bg); border-radius:2px;"><div style="width:4%; height:100%; background:var(--teal); border-radius:2px;"></div></div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;"><span style="color:var(--muted);">Processor / Gateway fee</span><span style="color:var(--amber); font-family:'Courier New',monospace; font-weight:700;">~0.2% + $0.30</span></div>
+            <div style="height:4px; background:var(--bg); border-radius:2px;"><div style="width:8%; height:100%; background:var(--amber); border-radius:2px;"></div></div>
+          </div>
+          <div class="card" style="padding:12px; background:var(--surface);">
+            <div style="display:flex; justify-content:space-between; font-size:12.5px; font-weight:700;"><span style="color:var(--text);">Total Merchant Cost</span><span style="color:var(--green); font-family:'Courier New',monospace;">~2–3%</span></div>
+            <p style="font-size:11px; color:var(--muted); margin-top:4px;">Deducted before merchant receives settlement</p>
+          </div>
+
+          <div style="margin-top:4px;">
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:8px;">Why Transactions Get Declined</div>
+            <div style="display:flex; flex-direction:column; gap:5px; font-size:12px;">
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ Insufficient credit/funds</div>
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ AVS mismatch (wrong billing address)</div>
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ CVV mismatch</div>
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ Card expired</div>
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ Fraud flag triggered</div>
+              <div style="padding:6px 10px; background:var(--rose-light); border:1px solid #fecdd3; border-radius:6px; color:#9f1239;">❌ Card blocked / frozen by bank</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAPTER 8 — AUTHORIZE.NET
+  ══════════════════════════════════════════ -->
+  <div id="ch8">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:#2563eb;">8</div>
+      <div class="chapter-meta">
+        <div class="chapter-label" style="color:#2563eb;">System-Specific</div>
+        <div class="chapter-title">Authorize.net — Our Gateway</div>
+        <div class="chapter-desc">Specific details about the payment gateway we use in our system.</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="section-title">
+        <div class="section-num" style="background:#2563eb;">1</div>
+        What Is Authorize.net?
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="color:var(--muted); font-size:13px; margin-bottom:12px;">Authorize.net is one of the oldest and most trusted payment gateways, founded in 1996 and now owned by Visa Inc. It processes millions of transactions daily for businesses worldwide.</p>
+          <div class="flow">
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#2563eb;">🔐</div>
+              <div class="flow-body"><strong>Secure Card Capture</strong><span>Collects card info through encrypted forms — we never see or touch raw card numbers</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#2563eb;">✅</div>
+              <div class="flow-body"><strong>Authorization Request</strong><span>Sends auth to issuing bank via Visa/Mastercard network and returns result instantly</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#2563eb;">💾</div>
+              <div class="flow-body"><strong>Tokenization</strong><span>Replaces real card numbers with secure tokens for safe storage and recurring billing</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#2563eb;">📊</div>
+              <div class="flow-body"><strong>Reporting Dashboard</strong><span>Full transaction history, status, settlement records, and dispute management</span></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-circle" style="background:#2563eb; border:0;">🚨</div>
+              <div class="flow-body"><strong>Fraud Detection (AFDS)</strong><span>Advanced Fraud Detection Suite — flags suspicious patterns automatically</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="callout callout-blue">
+            <strong>Key Credentials</strong>
+            <p>Each environment has its own <strong>API Login ID</strong> and <strong>Transaction Key</strong>. These must never be mixed between test and live.</p>
+          </div>
+          <div class="card">
+            <h4>Compliance &amp; Security</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;">
+              <span class="tag tag-blue">PCI DSS Level 1</span>
+              <span class="tag tag-blue">SSL / TLS Encrypted</span>
+              <span class="tag tag-blue">Tokenization</span>
+              <span class="tag tag-blue">3D Secure Support</span>
+              <span class="tag tag-blue">AFDS Fraud Suite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <div class="section-title" style="margin-top:4px;">
+        <div class="section-num" style="background:#2563eb;">2</div>
+        Test Mode vs Live Mode
+      </div>
+      <div class="mode-grid">
+        <div class="mode-card mode-test">
+          <div class="mode-badge badge-test">🧪 TEST MODE (Sandbox)</div>
+          <h4>Development Environment</h4>
+          <p style="font-size:12px; color:#92400e; margin-bottom:8px;">No real money moves. Use for building, testing, and debugging.</p>
+          <ul>
+            <li>URL: <code style="font-family:'Courier New',monospace;">sandbox.authorize.net</code></li>
+            <li>Test card: <code style="font-family:'Courier New',monospace;">4111 1111 1111 1111</code></li>
+            <li>Any future expiry date</li>
+            <li>Any 3-digit CVV</li>
+            <li>Zero real charges</li>
+          </ul>
+        </div>
+        <div class="mode-card mode-live">
+          <div class="mode-badge badge-live">🟢 LIVE MODE (Production)</div>
+          <h4>Production Environment</h4>
+          <p style="font-size:12px; color:#166534; margin-bottom:8px;">Real transactions. Real money. All charges are final.</p>
+          <ul>
+            <li>URL: <code style="font-family:'Courier New',monospace;">merchant.authorize.net</code></li>
+            <li>Real card numbers required</li>
+            <li>Funds actually charged</li>
+            <li>Separate API credentials</li>
+            <li>Appears on cardholder statement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-rose" style="margin-top:14px;">
+        <strong>⚠️ How to Switch Modes</strong>
+        <p>Change the <code style="font-family:'Courier New',monospace; font-size:11px;">API Login ID</code> and <code style="font-family:'Courier New',monospace; font-size:11px;">Transaction Key</code> from sandbox to live credentials in your integration. Also update the API endpoint URL. <strong>Never use live credentials in a development or test environment.</strong></p>
+      </div>
+
+      <hr class="divider"/>
+
+      <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:12px;">Quick Reference — Glossary</div>
+      <div class="qr-grid">
+        <div class="qr-item"><div class="qr-term">PAN</div><div class="qr-def">Primary Account Number — the 16-digit card number</div></div>
+        <div class="qr-item"><div class="qr-term">BIN</div><div class="qr-def">First 6 digits — identifies bank &amp; network</div></div>
+        <div class="qr-item"><div class="qr-term">CVV</div><div class="qr-def">Card Verification Value — 3 or 4 digit security code</div></div>
+        <div class="qr-item"><div class="qr-term">AVS</div><div class="qr-def">Address Verification System — validates billing address vs bank records</div></div>
+        <div class="qr-item"><div class="qr-term">Auth Code</div><div class="qr-def">6-character code returned on transaction approval</div></div>
+        <div class="qr-item"><div class="qr-term">Interchange</div><div class="qr-def">Fee from merchant's bank to issuing bank (~1.5–2%)</div></div>
+        <div class="qr-item"><div class="qr-term">Chargeback</div><div class="qr-def">Customer disputes a charge with their bank — merchant must respond</div></div>
+        <div class="qr-item"><div class="qr-term">Tokenization</div><div class="qr-def">Replaces real card data with a safe token for storage</div></div>
+        <div class="qr-item"><div class="qr-term">Hard Inquiry</div><div class="qr-def">Credit pull when applying for a loan — temporarily lowers score</div></div>
+        <div class="qr-item"><div class="qr-term">Soft Inquiry</div><div class="qr-def">Pre-approval or self-check — does NOT affect score</div></div>
+        <div class="qr-item"><div class="qr-term">PCI DSS</div><div class="qr-def">Payment Card Industry Security Standard — mandatory compliance</div></div>
+        <div class="qr-item"><div class="qr-term">3D Secure</div><div class="qr-def">Extra auth step — OTP / biometric (Verified by Visa, SecureCode)</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+  // Highlight active nav item on scroll
+  const sections = ['ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8'];
+  const navItems = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(n => n.classList.remove('active'));
+        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
