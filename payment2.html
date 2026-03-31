@@ -3318,12 +3318,12 @@
 
         <div id="story">
             <div class="section-banner sb-sky" style="margin-top:36px;">
-                <!-- <div class="sb-num">C</div> -->
-                <!-- <div><div class="sb-label">Section C</div><div class="sb-title">Storyline</div><div class="sb-desc">Payment behaviors and fraud scenarios mapped to transaction flows</div></div>
-  </div> -->
                 <div class="block" style="overflow-x:auto;">
-                    <h3 style="margin-bottom:12px;">Story Line for payments:</h3>
-                    <table style="width:100%;border-collapse:collapse;font-size:14px;text-align:left;">
+                    <h3 style="margin-bottom:12px;">Story Line for payments</h3>
+                    <p style="margin-bottom:14px;">Below are both: standard payment patterns and the three real-world storyline scenarios.</p>
+
+                    <h4 style="margin:16px 0 8px;">General payment types</h4>
+                    <table style="width:100%;border-collapse:collapse;font-size:14px;text-align:left;margin-bottom:24px;">
                         <thead>
                             <tr style="background:#f3f4f6;">
                                 <th style="border:1px solid #ccc;padding:8px;">Payments</th>
@@ -3334,74 +3334,214 @@
                         <tbody>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">1. AUTH ONLY</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You go to a hotel and swipe your card at
-                                    check-in. The hotel does not charge you yet. It just checks if you have money and
-                                    blocks it temporarily. If you cancel or leave, the money is released.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth → Hold placed → No Capture → No
-                                    Settlement → Hold released</td>
+                                <td style="border:1px solid #ccc;padding:8px;">You go to a hotel and swipe your card at check-in. The hotel does not charge you yet. It just checks if you have money and blocks it temporarily. If you cancel or leave, the money is released.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth → Hold placed → No Capture → No Settlement → Hold released</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">2. AUTH + CAPTURE (DELAYED)</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You order something online. The website
-                                    checks your card and blocks the money. The item is shipped later. Once shipped, the
-                                    company actually charges you.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth → Hold → Capture (later) →
-                                    Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">You order something online. The website checks your card and blocks the money. The item is shipped later. Once shipped, the company actually charges you.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth → Hold → Capture (later) → Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">3. SALE (INSTANT PAYMENT)</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You buy something at a shop. You swipe
-                                    your card and the money is deducted instantly. No waiting.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth + Capture (same time) → Settlement
-                                </td>
+                                <td style="border:1px solid #ccc;padding:8px;">You buy something at a shop. You swipe your card and the money is deducted instantly. No waiting.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth + Capture (same time) → Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">4. PRE-AUTHORIZATION</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You check into a hotel. They block
-                                    â‚¹5000 even though your room is â‚¹3000. After checkout, they adjust and charge the
-                                    final amount.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth (extra hold) → Adjust amount →
-                                    Capture → Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">You check into a hotel. They block ₹5000 even though your room is ₹3000. After checkout, they adjust and charge the final amount.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth (extra hold) → Adjust amount → Capture → Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">5. PARTIAL CAPTURE</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You order 3 items online. Only 2 are
-                                    available. The company only charges for 2 items.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth (₹1000) → Capture (₹700) →
-                                    Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">You order 3 items online. Only 2 are available. The company only charges for 2 items.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth (₹1000) → Capture (₹700) → Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">6. MULTIPLE CAPTURE</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You order multiple items. They are
-                                    delivered separately. Each time an item is shipped, you are charged partially.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth → Capture 1 → Capture 2 → Settlement
-                                </td>
+                                <td style="border:1px solid #ccc;padding:8px;">You order multiple items. They are delivered separately. Each time an item is shipped, you are charged partially.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth → Capture 1 → Capture 2 → Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">7. VOID (CANCEL BEFORE CHARGE)</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You swipe your card but immediately
-                                    cancel the transaction. The bank removes the hold and no money is taken.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth → Void → No Capture → No Settlement
-                                </td>
+                                <td style="border:1px solid #ccc;padding:8px;">You swipe your card but immediately cancel the transaction. The bank removes the hold and no money is taken.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth → Void → No Capture → No Settlement</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">8. REFUND (AFTER PAYMENT)</td>
-                                <td style="border:1px solid #ccc;padding:8px;">You buy a product and later return it.
-                                    The company sends your money back to your account.</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Sale → Settlement → Refund (new
-                                    transaction)</td>
+                                <td style="border:1px solid #ccc;padding:8px;">You buy a product and later return it. The company sends your money back to your account.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Sale → Settlement → Refund (new transaction)</td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid #ccc;padding:8px;">9. CHECK</td>
-                                <td style="border:1px solid #ccc;padding:8px;">Every payment is just a journey of money:
-                                    first the bank checks, then the merchant charges, then the money is transferred.
-                                </td>
-                                <td style="border:1px solid #ccc;padding:8px;">Auth -> "Check and hold"
-                                    Capture → “Charge”
-                                    Settlement -> "Transafer"</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Every payment is just a journey of money: first the bank checks, then the merchant charges, then the money is transferred.</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Auth -> "Check and hold" Capture → “Charge” Settlement -> "Transfer"</td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <p style="margin-bottom:14px;">Three detailed scenarios  </p>
+
+                    <h4 style="margin:16px 0 8px;">1. Petrol Bunker / Gas Station</h4>
+                    <p style="margin-bottom:12px;"> You go to a petrol pump and swipe your card. The system doesn’t know how much fuel you’ll fill, so it first blocks a fixed amount (say ₹5000). After fueling (say ₹2000), the actual amount is charged and the rest is released..</p>
+                    <table style="width:100%;border-collapse:collapse;font-size:14px;text-align:left;margin-bottom:24px;">
+                        <thead>
+                            <tr style="background:#f3f4f6;">
+                                <th style="border:1px solid #ccc;padding:8px;">Date</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Time</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Amount</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Transaction Type</th>
+                                <th style="border:1px solid #ccc;padding:8px;">What Happens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">10:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹5000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Authorization</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Bank blocks max fuel amount</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">10:05</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹2000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Capture</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Actual fuel amount charged</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">EOD</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹2000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Money sent to petrol pump</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 2</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹3000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Release</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Remaining hold released</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin:16px 0 8px;">2. Hotel (Room + Incidentals)</h4>
+                    <p style="margin-bottom:12px;">You check into a hotel. They block money for room charges and extra expenses (incidentals like food, minibar). At checkout, they charge the final amount based on what you used.</p>
+                    <table style="width:100%;border-collapse:collapse;font-size:14px;text-align:left;margin-bottom:24px;">
+                        <thead>
+                            <tr style="background:#f3f4f6;">
+                                <th style="border:1px solid #ccc;padding:8px;">Date</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Time</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Amount</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Transaction Type</th>
+                                <th style="border:1px solid #ccc;padding:8px;">What Happens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">14:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹10000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Authorization</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Room + incidentals hold at check-in</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 2</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">No action</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Stay continues</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 3</td>
+                                <td style="border:1px solid #ccc;padding:8px;">11:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹8000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Capture</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Final bill charged on checkout</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 3</td>
+                                <td style="border:1px solid #ccc;padding:8px;">EOD</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹8000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Money sent to hotel</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 4</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹2000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Release</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Unused hold released</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin:16px 0 8px;">3. Car Rental (Rental + Fuel, Damage)</h4>
+                    <p style="margin-bottom:12px;">  At pickup, rental + fuel and damage holds are placed. On return, the rental/fuel amount is captured and settled immediately. The damage hold remains pending and is captured or released after inspection (up to 15 days).</p>
+                    <table style="width:100%;border-collapse:collapse;font-size:14px;text-align:left;margin-bottom:24px;">
+                        <thead>
+                            <tr style="background:#f3f4f6;">
+                                <th style="border:1px solid #ccc;padding:8px;">Date</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Time</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Amount</th>
+                                <th style="border:1px solid #ccc;padding:8px;">Transaction Type</th>
+                                <th style="border:1px solid #ccc;padding:8px;">What Happens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">09:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹15000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Authorization</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Rental + fuel hold on pickup</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 1</td>
+                                <td style="border:1px solid #ccc;padding:8px;">09:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹10000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Authorization</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Damage security hold</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 5</td>
+                                <td style="border:1px solid #ccc;padding:8px;">18:00</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹12000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Capture</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Rental charged on return</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 5</td>
+                                <td style="border:1px solid #ccc;padding:8px;">EOD</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹12000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Money sent to rental company</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 20</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹10000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Release</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Damage hold released (no issue)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 20*</td>
+                                <td style="border:1px solid #ccc;padding:8px;">—</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹3000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Capture</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Damage charge (if damage found)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ccc;padding:8px;">Day 20*</td>
+                                <td style="border:1px solid #ccc;padding:8px;">EOD</td>
+                                <td style="border:1px solid #ccc;padding:8px;">₹3000</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Settlement</td>
+                                <td style="border:1px solid #ccc;padding:8px;">Damage amount transferred</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:13px;color:#4a5568;">*For damage scenario, charge/capture happens up to 15 days after return to allow inspection.</p>
                 </div>
             </div>
         </div><!-- /main -->
