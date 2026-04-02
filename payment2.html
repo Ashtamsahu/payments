@@ -533,6 +533,38 @@
             background: var(--purple-light);
         }
 
+        .card-highlight {
+            border: 1px solid #cbd5e1;
+            background: #f8fafd;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.07);
+        }
+
+        .card-highlight h4,
+        .card-highlight h5 {
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .check-format-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .placeholder-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #64748b;
+            font-size: 13px;
+        }
+
         /* TABLE */
         table {
             width: 100%;
@@ -1856,6 +1888,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-highlight" style="margin-top:16px;">
+                    <div class="card card-indigo" style="padding:14px;box-shadow:none;border:none;background:transparent;">
+                        <h4>Luhn Algorithm (Card Number Format Validation)</h4>
+                        <p>👉 A checksum algorithm used to verify if a card number is valid in format (not fake/typo).</p>
+                        <p>It does NOT check if card has money. It only checks if the number is mathematically valid.</p>
+                        <div style="margin-top:8px;"><strong>🎯 Where It’s Used</strong></div>
+                        <ul>
+                            <li>Credit/Debit card validation</li>
+                            <li>Payment gateways (like Authorize.Net)</li>
+                            <li>Form validation before sending to bank</li>
+                        </ul>
+                        <div style="margin-top:8px;"><strong>🎯 Step-by-Step Working</strong></div>
+                        <p>Example card: <code style="font-family:'DM Mono',monospace;">4539 1488 0343 6467</code></p>
+                        <p>Step 1: Start from right, move left</p>
+                        <ul>
+                            <li>Ignore last digit (check digit)</li>
+                        </ul>
+                        <p>Step 2: Double every 2nd digit</p>
+                        <pre style="background:#f8fafc;padding:8px;border-radius:6px;overflow:auto;">Original:   4 5 3 9 1 4 8 8 0 3 4 3 6 4 6 7
+Double:     8   6   2   16  0   8   12  12</pre>
+                        <p>Step 3: If result > 9 → subtract 9</p>
+                        <ul>
+                            <li>16 → 7</li>
+                            <li>12 → 3</li>
+                            <li>12 → 3</li>
+                        </ul>
+                        <p>Step 4: Add all digits</p>
+                        <p>Step 5: Check condition</p>
+                        <p>Total % 10 == 0 → Valid; else → Invalid</p>
+                        <p>🎯 Simple Logic: Double → Adjust → Sum → Check divisible by 10</p>
+                    </div>
+                </div>
                 <hr class="divider" />
                 <div class="block-title">
                     <div class="bt-num" style="background:#2563eb;">3</div>Credit vs Debit
@@ -3059,7 +3123,102 @@
                     <div class="ch-desc">Understanding every element of a US personal check.</div>
                 </div>
             </div>
-            <div class="block">
+            <div class="block card-highlight">
+                <div class="check-format-grid" style="grid-template-columns: 1.2fr 0.8fr;">
+                    <div class="card card-teal" style="padding:16px;">
+                        <h4> ERP: Check Format for Pre-Printed Checks</h4>
+                        <p><strong>A.</strong>  "ERP's ability to change format of the check for pre-printed checks”</p>
+                        <p><em>Meaning:</em> TThe ERP can adjust print layout based on the type of check paper used.</p>
+                        <p>👉 Because in real life:</p>
+                        <ul>
+                            <li>Companies don’t print blank checks</li>
+                            <li>They use pre-printed checks (already contain logo, bank details)</li>
+                        </ul>
+                        <p><strong>B.</strong> “How pre-printed checks are ordered”</p>
+                        <p><em>Meaning:</em> Companies order checks from vendors with:</p>
+                        <ul>
+                            <li>Company logo</li>
+                            <li>Bank account number</li>
+                            <li>Routing number</li>
+                        </ul>
+                        <p>👉 Then ERP only prints:</p>
+                        <ul>
+                            <li>Payee</li>
+                            <li>Amount</li>
+                            <li>Date</li>
+                        </ul>
+                    </div>
+                    <div class="card card-blue" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <h5>Check Printing & Pre-Printed Check Formats</h5>
+                        <p>In real-world business systems, companies do not print complete checks from scratch. Instead, they use <strong>pre-printed checks</strong> that already contain company and bank details.</p>
+                        <p><strong>Key benefits</strong></p>
+                        <ul>
+                            <li>Faster printing with consistent layout</li>
+                            <li>Legal compliance with bank MICR information</li>
+                            <li>Flexible ERP alignment for top/middle/bottom formats</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class="card" style="padding:16px; margin-top:16px;">
+                    <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
+                        <div style="flex:1; min-width:320px;">
+                            <h3>What are Pre-Printed Checks?</h3>
+                <ul>
+                    <li>Checks ordered from vendors with company logo</li>
+                    <li>Contain bank account number and routing number</li>
+                    <li>Designed in specific layouts (top, middle, bottom check positions)</li>
+                </ul>
+                <h3>How Companies Order Pre-Printed Checks</h3>
+                <ul>
+                    <li>Ordered from online check printing vendors</li>
+                    <li>Customized with:
+                        <ul>
+                            <li>Company name and logo</li>
+                            <li>Bank account number</li>
+                            <li>Routing number</li>
+                        </ul>
+                    </li>
+                    <li>Delivered as ready-to-use check books</li>
+                </ul>
+                <h3>Role of Stone Profit System (ERP)</h3>
+                <ul>
+                    <li>Does not print full check design</li>
+                    <li>Prints only dynamic data:
+                        <ul>
+                            <li>Payee name</li>
+                            <li>Amount (numbers and words)</li>
+                            <li>Date</li>
+                            <li>Memo</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Check Format Customization</h3>
+                <ul>
+                    <li>ERP supports multiple check layouts</li>
+                    <li>Formats include:
+                        <ul>
+                            <li>Top check format</li>
+                            <li>Middle check format</li>
+                            <li>Bottom check format</li>
+                        </ul>
+                    </li>
+                    <li>System aligns printed data with pre-printed fields</li>
+                </ul>
+                <p>This flexibility ensures that the printed information correctly matches the layout of the pre-printed check paper used by the company.</p>
+
+                <p>In real systems, checks are pre-printed with company and bank details. The ERP system like Stone Profit only prints variable data like payee and amount. Since different check layouts exist, the system provides configurable formats to align printing correctly.</p>
+                        </div>
+                        <div style="flex:0 0 280px;">
+                            <!-- <div class="placeholder-box" style="height:360px; margin-top:0;">
+                                <strong>Image</strong><br>
+                                <span>Check format image here</span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
                 <div style="overflow-x:auto;">
                     <div class="check-visual">
                         <div class="check-corner"><strong style="font-size:10px;">No. 1042</strong></div>
@@ -3397,19 +3556,6 @@
                     </table>
 
                     <p style="margin-bottom:14px;">Three detailed scenarios  </p>
-
-                    <div class="section-banner sb-indigo" style="margin-top:18px;">
-                        <div class="sb-num">D</div>
-                        <div>
-                            <div class="sb-label">Section D</div>
-                            <div class="sb-title">Authorize.net Detailed Guide</div>
-                            <div class="sb-desc">Jump directly to the dedicated Authorize.net document.</div>
-                        </div>
-                    </div>
-                    <div class="block" style="margin-bottom:20px;">
-                        <p>The Authorize.net guide opens in a new tab for full details.</p>
-                        <a href="Authorize.html" target="_blank" style="display:inline-block;padding:10px 14px;background:#2563eb;color:#fff;font-weight:700;border-radius:8px;text-decoration:none;">Open D. Authorize.net</a>
-                    </div>
 
                     <h4 style="margin:16px 0 8px;">1. Petrol Bunker / Gas Station</h4>
                     <p style="margin-bottom:12px;"> You go to a petrol pump and swipe your card. The system doesn’t know how much fuel you’ll fill, so it first blocks a fixed amount (say ₹5000). After fueling (say ₹2000), the actual amount is charged and the rest is released..</p>
