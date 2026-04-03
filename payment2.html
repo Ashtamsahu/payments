@@ -309,6 +309,11 @@
             color: #5eead4;
         }
 
+        .spill-valor {
+            background: rgba(10, 61, 145, .25);
+            color: #60a5fa;
+        }
+
         /* SECTION BANNER */
         .section-banner {
             border-radius: 14px;
@@ -1757,6 +1762,22 @@
                 </div>
             </div>
 
+            <div class="nav-divider"></div>
+
+            <!-- Section E accordion -->
+            <div class="nav-accordion">
+                <div class="nav-acc-header" onclick="toggleAcc(this)">
+                    <div class="nav-acc-dot" style="background:#0a3d91;"></div>
+                    <div class="nav-acc-label">E. Valor PayTech</div>
+                    <span class="nav-acc-arrow">▾</span>
+                </div>
+                <div class="nav-acc-body">
+                    <a class="nav-item" href="valor.html" target="_blank" style="font-weight:700;color:#0a3d91;">
+                        <div class="nav-dot" style="background:#0a3d91;"></div>Open full Valor PayTech guide
+                    </a>
+                </div>
+            </div>
+
         </div>
     </nav>
 
@@ -1773,6 +1794,7 @@
                 <a class="spill spill-blue" href="#ch1">A. Credit &amp; Card Payments</a>
                 <a class="spill spill-teal" href="#checks">B. Checks</a>
                 <a class="spill spill-purple" href="#story">C. Storyline</a>
+                <a class="spill spill-valor" href="valor.html" target="_blank">E. Valor PayTech</a>
             </div>
         </div>
 
@@ -3719,7 +3741,21 @@ Double:     8   6   2   16  0   8   12  12</pre>
                     <p style="font-size:13px;color:#4a5568;">*For damage scenario, charge/capture happens up to 15 days after return to allow inspection.</p>
                 </div>
             </div>
-        </div><!-- /main -->
+        </div>
+
+        <!-- SECTION E -->
+        <div class="section-banner sb-valor" id="section-e" style="margin-top:40px;">
+            <a href="valor.html" style="text-decoration:none; color:inherit; display:block;">
+                <div class="sb-num">E</div>
+                <div>
+                    <div class="sb-label">Section E</div>
+                    <div class="sb-title">Valor PayTech</div>
+                    <div class="sb-desc">Complete training guide for Valor PayTech payment platform</div>
+                </div>
+            </a>
+        </div>
+
+</div><!-- /main -->
 
         <script>
             function toggleAcc(header) {
