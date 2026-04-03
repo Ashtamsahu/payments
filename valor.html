@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Valor PayTech — Complete Training Guide</title>
+<style>
+:root {
+  --bg:#f4f6fb; --white:#fff; --surface:#eef0f7; --border:#dde1ed;
+  --border-light:#eaecf5; --text:#1a1d2e; --muted:#6b7280; --light-text:#9aa3b8;
+  --blue:#2563eb; --blue-light:#eff4ff; --blue-mid:#dbeafe;
+  --indigo:#4f46e5; --indigo-light:#eef2ff;
+  --teal:#0d9488; --teal-light:#f0fdfa;
+  --amber:#d97706; --amber-light:#fffbeb; --amber-mid:#fef3c7;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --rose:#e11d48; --rose-light:#fff1f2;
+  --purple:#7c3aed; --purple-light:#f5f3ff;
+  --slate:#475569;
+  /* Valor brand */
+  --valor-blue:#0a3d91;
+  --valor-green:#00b09b;
+  --valor-grad: linear-gradient(135deg,#0a3d91 0%,#0056c8 50%,#00b09b 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.65;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:250px;background:var(--white);border-right:1px solid var(--border);overflow-y:auto;z-index:200;display:flex;flex-direction:column;}
+.sidebar-logo{padding:15px 15px 12px;border-bottom:1px solid var(--border-light);background:linear-gradient(135deg,#0a3d91,#00b09b);}
+.sidebar-logo-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.sidebar-logo-title{font-size:14px;font-weight:800;color:white;margin-top:2px;}
+.sidebar-nav{padding:6px 0 24px;flex:1;}
+
+.nav-acc-header{display:flex;align-items:center;gap:8px;padding:9px 13px 7px;cursor:pointer;user-select:none;border-left:3px solid transparent;transition:all .15s;}
+.nav-acc-header:hover{background:var(--bg);}
+.nav-acc-header.open{background:var(--blue-light);border-left-color:var(--blue);}
+.nav-acc-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+.nav-acc-label{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--text);flex:1;}
+.nav-acc-arrow{font-size:9px;color:var(--light-text);transition:transform .2s;}
+.nav-acc-header.open .nav-acc-arrow{transform:rotate(90deg);}
+.nav-acc-body{overflow:hidden;max-height:0;transition:max-height .3s ease;}
+.nav-acc-body.open{max-height:1400px;}
+
+.nav-chapter{padding:4px 12px 2px 28px;font-size:8.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--light-text);margin-top:3px;}
+.nav-item{display:flex;align-items:center;gap:6px;padding:4px 12px 4px 28px;text-decoration:none;color:var(--muted);font-size:11.5px;transition:all .15s;border-left:2px solid transparent;margin-left:3px;}
+.nav-item:hover{color:var(--blue);background:var(--blue-light);border-left-color:var(--blue);}
+.nav-item.active{color:var(--blue);background:var(--blue-light);border-left-color:var(--blue);font-weight:700;}
+.nav-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.nav-divider{height:1px;background:var(--border-light);margin:5px 12px;}
+
+/* ─── MAIN ─── */
+.main{margin-left:250px;width:calc(100% - 250px);max-width:none;padding:30px 40px 80px;}
+
+/* ─── HERO ─── */
+.hero{background:var(--valor-grad);border-radius:14px;padding:32px 36px;margin-bottom:28px;color:white;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.05);}
+.hero::after{content:'';position:absolute;bottom:-30px;left:30%;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);}
+.hero-tag{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;}
+.hero h1{font-size:26px;font-weight:800;line-height:1.15;margin-bottom:7px;position:relative;}
+.hero h1 span{color:#6ee7b7;}
+.hero p{font-size:12.5px;color:rgba(255,255,255,.65);max-width:540px;position:relative;margin-bottom:18px;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:6px;position:relative;}
+.hbadge{padding:4px 11px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);}
+
+/* ─── SECTION BANNER ─── */
+.section-banner{border-radius:12px;padding:20px 24px;margin:26px 0 18px;display:flex;align-items:center;gap:16px;}
+.sb-valor{background:var(--valor-grad);color:white;}
+.sb-teal{background:linear-gradient(135deg,#134e4a,#0d9488);color:white;}
+.sb-blue{background:linear-gradient(135deg,#1e40af,#2563eb);color:white;}
+.sb-purple{background:linear-gradient(135deg,#4c1d95,#7c3aed);color:white;}
+.sb-rose{background:linear-gradient(135deg,#9f1239,#e11d48);color:white;}
+.sb-amber{background:linear-gradient(135deg,#92400e,#d97706);color:white;}
+.sb-green{background:linear-gradient(135deg,#065f46,#059669);color:white;}
+.sb-indigo{background:linear-gradient(135deg,#3730a3,#4f46e5);color:white;}
+.sb-slate{background:linear-gradient(135deg,#1e293b,#475569);color:white;}
+.sb-num{width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0;}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:2px;}
+.sb-title{font-size:17px;font-weight:800;line-height:1.15;}
+.sb-desc{font-size:11.5px;opacity:.7;margin-top:2px;}
+
+/* ─── CHAPTER ─── */
+.ch-header{display:flex;align-items:flex-start;gap:11px;margin:22px 0 13px;}
+.ch-num{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;flex-shrink:0;}
+.ch-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1px;}
+.ch-title{font-size:16px;font-weight:800;color:var(--text);line-height:1.2;}
+.ch-desc{font-size:11.5px;color:var(--muted);margin-top:2px;}
+
+/* ─── BLOCK ─── */
+.block{background:var(--white);border:1px solid var(--border);border-radius:11px;padding:22px 26px;margin-bottom:18px;}
+.block-title{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.bt-num{width:19px;height:19px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white;flex-shrink:0;}
+.divider{border:none;border-top:1px solid var(--border-light);margin:16px 0;}
+
+/* ─── GRIDS ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:9px;}
+.gauto{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px;}
+
+/* ─── CARDS ─── */
+.card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:13px;}
+.card h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.card p,.card li{font-size:11.5px;color:var(--muted);}
+.card ul{margin-left:14px;}
+.card ul li{margin-bottom:2px;}
+.card-blue{border-left:3px solid var(--blue);background:var(--blue-light);}
+.card-green{border-left:3px solid var(--green);background:var(--green-light);}
+.card-amber{border-left:3px solid var(--amber);background:var(--amber-light);}
+.card-rose{border-left:3px solid var(--rose);background:var(--rose-light);}
+.card-indigo{border-left:3px solid var(--indigo);background:var(--indigo-light);}
+.card-teal{border-left:3px solid var(--teal);background:var(--teal-light);}
+.card-purple{border-left:3px solid var(--purple);background:var(--purple-light);}
+.card-valor{border-left:3px solid var(--valor-blue);background:#eff6ff;}
+
+/* ─── TABLE ─── */
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:var(--surface);padding:8px 10px;font-size:10px;font-weight:700;text-align:left;color:var(--text);border-bottom:2px solid var(--border);}
+td{padding:7px 10px;border-bottom:1px solid var(--border-light);color:var(--muted);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+td code{font-family:'Courier New',monospace;font-size:10.5px;background:#f1f5f9;padding:1px 5px;border-radius:3px;color:var(--blue);}
+
+/* ─── CALLOUT ─── */
+.callout{border-radius:8px;padding:11px 13px;font-size:12px;margin:10px 0;}
+.callout strong{display:block;margin-bottom:2px;}
+.cb{background:var(--blue-light);border:1px solid var(--blue-mid);} .cb strong{color:var(--blue);} .cb p{color:#1e40af;}
+.ca{background:var(--amber-light);border:1px solid var(--amber-mid);} .ca strong{color:var(--amber);} .ca p{color:#92400e;}
+.cg{background:var(--green-light);border:1px solid #bbf7d0;} .cg strong{color:var(--green);} .cg p{color:#166534;}
+.cr{background:var(--rose-light);border:1px solid #fecdd3;} .cr strong{color:var(--rose);} .cr p{color:#9f1239;}
+.cp{background:var(--purple-light);border:1px solid #ddd6fe;} .cp strong{color:var(--purple);} .cp p{color:#4c1d95;}
+.ct{background:var(--teal-light);border:1px solid #99f6e4;} .ct strong{color:var(--teal);} .ct p{color:#115e59;}
+.cv{background:#eff6ff;border:1px solid #bfdbfe;} .cv strong{color:var(--valor-blue);} .cv p{color:#1e3a8a;}
+
+/* ─── TAGS ─── */
+.tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:9.5px;font-weight:700;}
+.t-blue{background:var(--blue-mid);color:var(--blue);}
+.t-green{background:#dcfce7;color:var(--green);}
+.t-amber{background:var(--amber-mid);color:var(--amber);}
+.t-rose{background:#ffe4e6;color:var(--rose);}
+.t-slate{background:#f1f5f9;color:var(--slate);}
+.t-purple{background:#ede9fe;color:var(--purple);}
+.t-teal{background:#ccfbf1;color:var(--teal);}
+.t-valor{background:#dbeafe;color:var(--valor-blue);}
+
+/* ─── FLOW ─── */
+.flow{display:flex;flex-direction:column;}
+.flow-item{display:flex;gap:11px;align-items:flex-start;padding-bottom:13px;position:relative;}
+.flow-item:last-child{padding-bottom:0;}
+.fc{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;position:relative;z-index:1;}
+.flow-item:not(:last-child) .fc::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);width:2px;height:13px;background:var(--border);}
+.fb{padding-top:3px;flex:1;}
+.fb strong{color:var(--text);font-size:12px;display:block;margin-bottom:1px;}
+.fb span{color:var(--muted);font-size:11px;}
+
+/* ─── BIG FLOW ─── */
+.big-flow{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-top:12px;}
+.bf-step{flex:1;min-width:75px;text-align:center;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 6px;}
+.bf-icon{font-size:15px;margin-bottom:3px;}
+.bf-label{font-size:10px;font-weight:700;color:var(--text);display:block;}
+.bf-sub{font-size:8.5px;color:var(--muted);margin-top:1px;}
+.bf-arr{font-size:13px;color:#cbd5e1;padding:0 2px;flex-shrink:0;}
+
+/* ─── CODE BLOCK ─── */
+.code-block{background:#0f172a;border-radius:9px;padding:15px 17px;margin:12px 0;overflow-x:auto;}
+.code-block pre{font-family:'Courier New',monospace;font-size:11.5px;line-height:1.7;color:#e2e8f0;margin:0;}
+.ck{color:#7dd3fc;} .cv2{color:#86efac;} .cs{color:#fca5a5;} .cc{color:#64748b;}
+
+/* ─── MODULE CARDS ─── */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-top:12px;}
+.module-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:13px;text-align:center;transition:all .15s;}
+.module-card:hover{border-color:var(--valor-blue);transform:translateY(-1px);}
+.module-icon{font-size:20px;margin-bottom:6px;}
+.module-name{font-size:11.5px;font-weight:700;color:var(--text);display:block;margin-bottom:3px;}
+.module-desc{font-size:10px;color:var(--muted);}
+
+/* ─── CREDENTIAL CARDS ─── */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.cred-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;position:relative;overflow:hidden;}
+.cred-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;}
+.cc1::before{background:var(--valor-blue);}
+.cc2::before{background:var(--valor-green);}
+.cc3::before{background:var(--purple);}
+.cc4::before{background:var(--amber);}
+.cred-icon{font-size:17px;margin-bottom:5px;}
+.cred-name{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.cred-key{font-family:'Courier New',monospace;font-size:9px;color:var(--valor-blue);background:var(--blue-light);padding:2px 6px;border-radius:3px;margin-bottom:5px;display:inline-block;}
+.cred-desc{font-size:11px;color:var(--muted);}
+
+/* ─── MODE CARDS ─── */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:11px;}
+.mode-test{background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:8px;padding:13px;}
+.mode-live{background:var(--green-light);border:1px solid #bbf7d0;border-radius:8px;padding:13px;}
+.mode-badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;}
+.mb-test{background:var(--amber-mid);color:#92400e;}
+.mb-live{background:#bbf7d0;color:#14532d;}
+.mode-test h4{color:#92400e;font-size:12px;font-weight:700;margin-bottom:5px;}
+.mode-live h4{color:#14532d;font-size:12px;font-weight:700;margin-bottom:5px;}
+.mode-card ul{margin-left:14px;}
+.mode-test li{font-size:11px;color:#92400e;margin-bottom:2px;}
+.mode-live li{font-size:11px;color:#166534;margin-bottom:2px;}
+
+/* ─── VAULT VISUAL ─── */
+.vault-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0a3d91,#00b09b);color:white;padding:5px 12px;border-radius:7px;font-size:11px;font-weight:700;margin-bottom:8px;}
+.vault-feature{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:flex-start;gap:9px;}
+.vault-feature-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.vault-feature-body strong{color:var(--text);font-size:12px;display:block;margin-bottom:2px;}
+.vault-feature-body p{font-size:11px;color:var(--muted);}
+
+/* ─── TRANSACTION TYPE CARDS ─── */
+.txn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:9px;}
+.txn-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;position:relative;}
+.txn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:8px 8px 0 0;}
+.tc1::before{background:var(--blue);}
+.tc2::before{background:var(--teal);}
+.tc3::before{background:var(--green);}
+.tc4::before{background:var(--rose);}
+.tc5::before{background:var(--amber);}
+.tc6::before{background:var(--purple);}
+.tc7::before{background:#f97316;}
+.tc8::before{background:#ec4899;}
+.txn-num{font-size:8px;font-weight:700;color:var(--light-text);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.txn-card h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.txn-card p{font-size:10.5px;color:var(--muted);margin-bottom:6px;}
+.txn-uc{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:5px 6px;font-size:10px;color:var(--slate);}
+.txn-uc strong{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--light-text);margin-bottom:1px;}
+
+/* ─── ERROR ROWS ─── */
+.err-row{display:flex;gap:9px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:8px 10px;margin-bottom:6px;}
+.err-code{font-family:'Courier New',monospace;font-size:11px;font-weight:700;color:var(--rose);background:#ffe4e6;padding:2px 7px;border-radius:4px;flex-shrink:0;}
+.err-body strong{font-size:11.5px;color:var(--text);display:block;margin-bottom:1px;}
+.err-body p{font-size:10.5px;color:var(--muted);}
+
+/* ─── SCORE BAR ─── */
+.score-spec{height:12px;border-radius:6px;background:linear-gradient(90deg,#ef4444 0%,#f59e0b 30%,#eab308 55%,#84cc16 75%,#22c55e 100%);margin:6px 0;}
+
+/* ─── IMG ─── */
+.img-row{display:flex;gap:9px;flex-wrap:wrap;margin:11px 0;justify-content:center;}
+.img-card{flex:1;min-width:250px;max-width:100%;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--white);}
+.img-card img{width:100%;height:auto;object-fit:contain;display:block;max-height:380px;}
+.img-cap{font-size:10px;color:var(--muted);padding:6px 9px;text-align:center;}
+.img-full img{height:auto;max-height:420px;}
+
+/* ─── DASHBOARD MOCK ─── */
+.dashboard-mock{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:12px 0;}
+.dash-topbar{background:linear-gradient(90deg,#0a3d91,#0056c8);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;}
+.dash-topbar-title{color:white;font-size:12px;font-weight:700;}
+.dash-topbar-sub{color:rgba(255,255,255,.6);font-size:10px;}
+.dash-body{padding:14px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;}
+.dash-stat{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 12px;text-align:center;}
+.dash-stat-val{font-size:16px;font-weight:800;color:var(--text);font-family:'Courier New',monospace;}
+.dash-stat-lbl{font-size:9.5px;color:var(--muted);margin-top:2px;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:820px){.sidebar{display:none;}.main{margin-left:0;padding:18px 16px 60px;}.g2,.g3,.g4,.cred-grid,.mode-grid{grid-template-columns:1fr;}.dash-body{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-tag">Training Guide</div>
+    <div class="sidebar-logo-title">⚡ Valor PayTech</div>
+  </div>
+  <div class="sidebar-nav">
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header open" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#0a3d91;"></div>
+        <div class="nav-acc-label">1. Overview</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body open">
+        <a class="nav-item" href="#what"><div class="nav-dot" style="background:#2563eb;"></div>What Is Valor PayTech?</a>
+        <a class="nav-item" href="#how"><div class="nav-dot" style="background:#2563eb;"></div>How Valor Works</a>
+        <a class="nav-item" href="#modules"><div class="nav-dot" style="background:#2563eb;"></div>Products &amp; Modules</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#0d9488;"></div>
+        <div class="nav-acc-label">2. Portal &amp; Interface</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#dashboard"><div class="nav-dot" style="background:#0d9488;"></div>Dashboard / Home</a>
+        <a class="nav-item" href="#transactions"><div class="nav-dot" style="background:#0d9488;"></div>Transactions Module</a>
+        <a class="nav-item" href="#virtual-terminal"><div class="nav-dot" style="background:#0d9488;"></div>Virtual Terminal</a>
+        <a class="nav-item" href="#settings"><div class="nav-dot" style="background:#0d9488;"></div>Settings &amp; Merchant Config</a>
+        <a class="nav-item" href="#reports"><div class="nav-dot" style="background:#0d9488;"></div>Reports &amp; Batch Search</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#2563eb;"></div>
+        <div class="nav-acc-label">3. API &amp; Integration</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#api-basics"><div class="nav-dot" style="background:#2563eb;"></div>API Basics &amp; Base URLs</a>
+        <a class="nav-item" href="#api-keys"><div class="nav-dot" style="background:#2563eb;"></div>API Keys &amp; Credentials</a>
+        <a class="nav-item" href="#api-request"><div class="nav-dot" style="background:#2563eb;"></div>Sample API Requests</a>
+        <a class="nav-item" href="#webhooks"><div class="nav-dot" style="background:#2563eb;"></div>Webhooks &amp; Callbacks</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#7c3aed;"></div>
+        <div class="nav-acc-label">4. Vault &amp; Tokenization</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#vault-overview"><div class="nav-dot" style="background:#7c3aed;"></div>The Vault — Overview</a>
+        <a class="nav-item" href="#vault-add"><div class="nav-dot" style="background:#7c3aed;"></div>Adding Customers</a>
+        <a class="nav-item" href="#vault-manage"><div class="nav-dot" style="background:#7c3aed;"></div>Managing &amp; Processing</a>
+        <a class="nav-item" href="#vault-recurring"><div class="nav-dot" style="background:#7c3aed;"></div>Recurring Billing</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#e11d48;"></div>
+        <div class="nav-acc-label">5. Fraud &amp; Security</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#fraud"><div class="nav-dot" style="background:#e11d48;"></div>Valor Shield RT &amp; AVS/CVV</a>
+        <a class="nav-item" href="#pci"><div class="nav-dot" style="background:#e11d48;"></div>PCI DSS &amp; Encryption</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#059669;"></div>
+        <div class="nav-acc-label">6. Transaction Types</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#txn-types"><div class="nav-dot" style="background:#059669;"></div>All Transaction Types</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#0d9488;"></div>
+        <div class="nav-acc-label">7. ACH &amp; Recurring</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#ach"><div class="nav-dot" style="background:#0d9488;"></div>ACH &amp; eCheck</a>
+        <a class="nav-item" href="#recurring"><div class="nav-dot" style="background:#0d9488;"></div>Recurring / Subscription</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#4f46e5;"></div>
+        <div class="nav-acc-label">8. Reporting</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#reporting"><div class="nav-dot" style="background:#4f46e5;"></div>Reports &amp; Reconciliation</a>
+      </div>
+    </div>
+    <div class="nav-divider"></div>
+
+    <div class="nav-accordion">
+      <div class="nav-acc-header" onclick="toggleAcc(this)">
+        <div class="nav-acc-dot" style="background:#d97706;"></div>
+        <div class="nav-acc-label">9. Errors &amp; Support</div>
+        <span class="nav-acc-arrow">▾</span>
+      </div>
+      <div class="nav-acc-body">
+        <a class="nav-item" href="#errors"><div class="nav-dot" style="background:#d97706;"></div>Common Errors &amp; Fixes</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📘 Internal Training Document — Valor PayTech</div>
+  <h1>Mastering <span>Valor PayTech</span></h1>
+  <p>A complete visual guide for new team members — portal navigation, API integration, The Vault, tokenization, fraud tools, ACH, recurring billing, reporting, and common errors.</p>
+  <div class="hero-badges">
+    <span class="hbadge">🏛️ Payment Gateway</span>
+    <span class="hbadge">🔐 PCI DSS Compliant</span>
+    <span class="hbadge">🔒 The Vault — Tokenization</span>
+    <span class="hbadge">🔁 Recurring Billing</span>
+    <span class="hbadge">🏦 ACH / eCheck</span>
+    <span class="hbadge">🛡️ Valor Shield RT</span>
+    <span class="hbadge">💻 Virtual Terminal</span>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 1 — OVERVIEW ══════════ -->
+<div class="section-banner sb-valor">
+  <div class="sb-num">1</div>
+  <div><div class="sb-label">Section 1</div><div class="sb-title">Overview — What Is Valor PayTech?</div><div class="sb-desc">The platform, how it works, and all its main products</div></div>
+</div>
+
+<div id="what">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0a3d91;">1</div>
+    <div><div class="ch-label" style="color:#0a3d91;">Foundation</div><div class="ch-title">What Is Valor PayTech?</div><div class="ch-desc">Understanding the company, platform, and who it serves.</div></div>
+  </div>
+  <div class="block">
+    <div class="img-row">
+      <div class="img-card img-full"><img src="Dashboard_valor.png" alt="Payment technology platform"/><div class="img-cap">Valor PayTech — connecting merchants, banks, and payment networks</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;"><strong style="color:var(--text);">Valor PayTech</strong> is a full-service payment technology company that provides merchants with everything needed to accept, process, and manage payments — both in-person and online. It acts as a combined <strong style="color:var(--text);">payment gateway + merchant portal + device management platform</strong>.</p>
+    <div class="g2">
+      <div class="card card-valor">
+        <h4>🏦 What Valor Does</h4>
+        <ul>
+          <li>Processes credit, debit, and ACH payments</li>
+          <li>Provides a web portal for merchants (VPOnline)</li>
+          <li>Manages POS devices &amp; virtual terminals</li>
+          <li>Offers tokenization / card vaulting (The Vault)</li>
+          <li>Handles recurring &amp; subscription billing</li>
+          <li>Provides fraud protection (Valor Shield RT)</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>👥 Who Uses Valor</h4>
+        <ul>
+          <li><strong>ISO</strong> — Independent Sales Organizations (resellers)</li>
+          <li><strong>Sub-ISO</strong> — Subsidiary ISOs under a parent ISO</li>
+          <li><strong>Merchants</strong> — Businesses that accept payments</li>
+          <li><strong>Operators</strong> — Staff at merchant locations</li>
+          <li><strong>Developers</strong> — Via API integration</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout cv" style="margin-top:12px;">
+      <strong>Portal URL</strong>
+      <p>Main merchant portal: <code style="font-family:'Courier New',monospace;font-size:11px;">https://vponline.valorpaytech.com</code> — This is where all management happens: transactions, vault, reports, settings, virtual terminal, and more.</p>
+    </div>
+  </div>
+</div>
+
+<div id="how">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0a3d91;">2</div>
+    <div><div class="ch-label" style="color:#0a3d91;">How It Works</div><div class="ch-title">How Valor Works — The Full Picture</div><div class="ch-desc">End-to-end flow from merchant to bank.</div></div>
+  </div>
+  <div class="block">
+    <div class="big-flow">
+      <div class="bf-step"><div class="bf-icon">👤</div><span class="bf-label">Customer</span><div class="bf-sub">Pays at POS / online</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">💻</div><span class="bf-label">Valor Gateway</span><div class="bf-sub">VPOnline / API</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">🔐</div><span class="bf-label">Encrypt</span><div class="bf-sub">SSL + Tokenize</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">⚙️</div><span class="bf-label">Processor</span><div class="bf-sub">TSYS, FDR, etc.</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">🌐</div><span class="bf-label">Network</span><div class="bf-sub">Visa / MC / AmEx</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">🏛️</div><span class="bf-label">Issuing Bank</span><div class="bf-sub">Auth decision</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">✅</div><span class="bf-label">Response</span><div class="bf-sub">Approve/Decline</div></div>
+      <div class="bf-arr">→</div>
+      <div class="bf-step"><div class="bf-icon">💰</div><span class="bf-label">Settlement</span><div class="bf-sub">1–3 business days</div></div>
+    </div>
+
+    <div class="g2" style="margin-top:14px;">
+      <div class="callout cg"><strong>✅ Approved Path</strong><p>Customer pays → Valor encrypts → Processor routes → Bank approves → Auth code returned → Capture batched → Funds settled to merchant account</p></div>
+      <div class="callout cr"><strong>❌ Declined Path</strong><p>Bank or fraud filter returns decline code → transaction stops → no money moves → merchant sees decline reason in VPOnline dashboard</p></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title">User Hierarchy — Who Has Access to What</div>
+    <div class="flow">
+      <div class="flow-item"><div class="fc" style="background:#0a3d91;">ISO</div><div class="fb"><strong>Independent Sales Organization</strong><span>Top level. Creates and manages Sub-ISOs and Merchants. Controls which modules each merchant can access. Sets up merchant accounts.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#0056c8;">Sub</div><div class="fb"><strong>Sub-ISO</strong><span>Under an ISO. Can create and manage their own merchants. Same module-granting ability within their permitted scope.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#0d9488;">Mcht</div><div class="fb"><strong>Merchant</strong><span>Business that processes payments. Accesses VPOnline portal. Can grant operators access to specific modules (e.g., Vault, Transactions).</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#059669;">Oper</div><div class="fb"><strong>Operator</strong><span>Staff member at a merchant location. Has limited access as configured by the merchant. Can process transactions, use Vault, etc.</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="modules">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0a3d91;">3</div>
+    <div><div class="ch-label" style="color:#0a3d91;">Products</div><div class="ch-title">Main Products &amp; Modules</div><div class="ch-desc">Everything available inside the Valor portal.</div></div>
+  </div>
+  <div class="block">
+    <div class="module-grid">
+      <div class="module-card"><div class="module-icon">🏠</div><span class="module-name">Dashboard / Home</span><div class="module-desc">Overview of sales, transactions, and stats</div></div>
+      <div class="module-card"><div class="module-icon">👥</div><span class="module-name">User Management</span><div class="module-desc">Manage operators and their access</div></div>
+      <div class="module-card"><div class="module-icon">💳</div><span class="module-name">Transactions</span><div class="module-desc">View, search, void, refund all transactions</div></div>
+      <div class="module-card"><div class="module-icon">💻</div><span class="module-name">Virtual Terminal</span><div class="module-desc">Process payments online without hardware</div></div>
+      <div class="module-card"><div class="module-icon">📱</div><span class="module-name">Device Management</span><div class="module-desc">Manage POS terminals and RCKT devices</div></div>
+      <div class="module-card"><div class="module-icon">🔒</div><span class="module-name">The Vault</span><div class="module-desc">Store &amp; tokenize customer card data</div></div>
+      <div class="module-card"><div class="module-icon">🛡️</div><span class="module-name">Valor Shield RT</span><div class="module-desc">Real-time fraud detection &amp; risk rules</div></div>
+      <div class="module-card"><div class="module-icon">📊</div><span class="module-name">Reports</span><div class="module-desc">Batch reports, settlements, deposits</div></div>
+      <div class="module-card"><div class="module-icon">🎯</div><span class="module-name">Engage My Customer</span><div class="module-desc">Marketing and customer engagement tools</div></div>
+      <div class="module-card"><div class="module-icon">📨</div><span class="module-name">Contact Us / Tickets</span><div class="module-desc">Support tickets and communication</div></div>
+      <div class="module-card"><div class="module-icon">📥</div><span class="module-name">Download Center</span><div class="module-desc">Documents, software, and resources</div></div>
+      <div class="module-card"><div class="module-icon">📚</div><span class="module-name">Knowledge Base</span><div class="module-desc">Help articles and training materials</div></div>
+    </div>
+    <div class="callout cv" style="margin-top:12px;">
+      <strong>Module Access Is Controlled by ISO</strong>
+      <p>Not all modules are visible to all merchants. The ISO/Sub-ISO grants access to specific modules during merchant onboarding. To check which modules are enabled, look at the left sidebar when logged in. If a module is missing, ask your ISO to enable it.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 2 — PORTAL ══════════ -->
+<div class="section-banner sb-teal">
+  <div class="sb-num">2</div>
+  <div><div class="sb-label">Section 2</div><div class="sb-title">Portal &amp; Merchant Interface</div><div class="sb-desc">Dashboard, transactions, virtual terminal, settings, and reports</div></div>
+</div>
+
+<div id="dashboard">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">4</div>
+    <div><div class="ch-label" style="color:#0d9488;">Portal</div><div class="ch-title">Dashboard / Home Screen</div><div class="ch-desc">The first screen after login — your real-time payment overview.</div></div>
+  </div>
+  <div class="block">
+    <div class="dashboard-mock">
+      <div class="dash-topbar">
+        <div><div class="dash-topbar-title">⚡ VALOR PAYTECH — VPOnline Portal</div><div class="dash-topbar-sub">Home · vponline.valorpaytech.com/app/dashboard</div></div>
+        <div style="color:rgba(255,255,255,.5);font-size:10px;">Hi, [Merchant Name] · Merchant</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-stat"><div class="dash-stat-val">$0.00</div><div class="dash-stat-lbl">Gross Sales</div></div>
+        <div class="dash-stat"><div class="dash-stat-val">0</div><div class="dash-stat-lbl">No. of Transactions</div></div>
+        <div class="dash-stat"><div class="dash-stat-val">$0.15</div><div class="dash-stat-lbl">Avg. Vol/Day (3M)</div></div>
+        <div class="dash-stat"><div class="dash-stat-val">$0.00</div><div class="dash-stat-lbl">Refunds</div></div>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:12px;">
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">What You See on the Dashboard</div>
+        <div class="flow">
+          <div class="flow-item"><div class="fc" style="background:#0d9488;font-size:9px;">📊</div><div class="fb"><strong>Gross Sales</strong><span>Total approved transaction volume for the selected date range (Today, This Month, etc.)</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;font-size:9px;">🔢</div><div class="fb"><strong>No. of Transactions</strong><span>Count of all transactions processed in the selected period</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;font-size:9px;">📈</div><div class="fb"><strong>Transactions Overview Chart</strong><span>Bar chart comparing current month vs last month daily volume</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;font-size:9px;">🔁</div><div class="fb"><strong>Recurring Amount</strong><span>Total from active recurring billing subscriptions</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;font-size:9px;">📋</div><div class="fb"><strong>Unsettled TXN Count</strong><span>Transactions authorized but not yet settled — pending money movement</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">Right Panel Shortcuts</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div class="card" style="padding:9px 11px;">
+            <div style="font-size:11.5px;font-weight:700;color:var(--text);">Take a Payment</div>
+            <p style="font-size:10.5px;">Shortcut to the Virtual Terminal to process a sale immediately</p>
+          </div>
+          <div class="card" style="padding:9px 11px;">
+            <div style="font-size:11.5px;font-weight:700;color:var(--text);">Invoice</div>
+            <p style="font-size:10.5px;">Create and send a payment invoice to a customer via email</p>
+          </div>
+          <div class="card" style="padding:9px 11px;">
+            <div style="font-size:11.5px;font-weight:700;color:var(--text);">QR Pay</div>
+            <p style="font-size:10.5px;">Generate a QR code for contactless customer self-payment</p>
+          </div>
+          <div class="card" style="padding:9px 11px;">
+            <div style="font-size:11.5px;font-weight:700;color:var(--text);">Pending Authorizations</div>
+            <p style="font-size:10.5px;">Auth-only transactions waiting to be captured or voided</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="transactions">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">5</div>
+    <div><div class="ch-label" style="color:#0d9488;">Transactions</div><div class="ch-title">Transactions Module</div><div class="ch-desc">View, search, void, refund, and manage all transactions.</div></div>
+  </div>
+  <div class="block">
+    <p style="color:var(--muted);font-size:12.5px;margin-bottom:12px;">The Transactions module is your <strong style="color:var(--text);">master list of all payments</strong>. Every sale, refund, void, recurring payment, and authorization appears here.</p>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Transaction List Columns</div>
+    <table>
+      <thead><tr><th>Column</th><th>What It Means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Date &amp; Time</strong></td><td>When the transaction was processed (EST)</td></tr>
+        <tr><td><strong>TXN Type</strong></td><td>Credit Sale, Debit Sale, Refund, Recurring Payment, Auth Only, etc.</td></tr>
+        <tr><td><strong>Card Details</strong></td><td>Card brand (VISA, MC) + last 4 digits</td></tr>
+        <tr><td><strong>Initiated By</strong></td><td>Which operator or user processed the transaction</td></tr>
+        <tr><td><strong>Transaction Mode</strong></td><td>Virtual Terminal, POS Device, Recurring, E-commerce, etc.</td></tr>
+        <tr><td><strong>Store</strong></td><td>Which store/location processed it (multi-location merchants)</td></tr>
+        <tr><td><strong>EPI</strong></td><td>EPI number = your merchant ID at the processor level</td></tr>
+        <tr><td><strong>Device Type</strong></td><td>Virtual Terminal, POS device name, Mobile, etc.</td></tr>
+        <tr><td><strong>Base Amount</strong></td><td>Transaction amount before tip</td></tr>
+        <tr><td><strong>Tip</strong></td><td>Tip amount added (restaurants, service businesses)</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Actions Available Per Transaction (⋮ menu)</div>
+    <div class="gauto">
+      <div class="card"><h4>📄 View Receipt</h4><p>View the digital receipt for the transaction</p></div>
+      <div class="card"><h4>📦 View Open Batch</h4><p>See which batch this transaction belongs to</p></div>
+      <div class="card"><h4>✅ Settle Batch</h4><p>Manually force a batch to settle</p></div>
+      <div class="card"><h4>🚫 Void Transaction</h4><p>Cancel before settlement — no money moves</p></div>
+      <div class="card"><h4>↩️ Issue Refund</h4><p>Return money after settlement</p></div>
+      <div class="card"><h4>🎟️ Open Ticket</h4><p>Create a support ticket for this transaction</p></div>
+      <div class="card"><h4>🔁 Convert to Recurring</h4><p>Turn a one-time sale into a recurring subscription</p></div>
+      <div class="card"><h4>📋 Transaction Log</h4><p>View full audit trail of all events on this transaction</p></div>
+      <div class="card"><h4>🔒 Add to Vault</h4><p>Save the customer's card to The Vault for future use</p></div>
+      <div class="card"><h4>✏️ Edit Customer on Vault</h4><p>Update a Vault customer's details from this transaction</p></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Filtering &amp; Search Options</div>
+    <div class="g2">
+      <div class="card card-blue"><h4>🔍 Search Filters</h4><ul><li>Date range (custom or preset)</li><li>Transaction type (Sale, Refund, Auth, Recurring)</li><li>Card type (Visa, MC, AmEx, Debit)</li><li>Approval status (Approved, Declined, Voided)</li><li>MTD (Month-to-Date) toggle</li></ul></div>
+      <div class="card card-teal"><h4>📤 Export Options</h4><ul><li>Export to CSV for spreadsheet analysis</li><li>View Open Batch button — summarizes current batch</li><li>Show Only Approved Transactions filter</li><li>Grid / Card view toggle</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div id="virtual-terminal">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">6</div>
+    <div><div class="ch-label" style="color:#0d9488;">Virtual Terminal</div><div class="ch-title">Virtual Terminal — Process Payments Without Hardware</div><div class="ch-desc">Type in card details and process any payment type directly from the browser.</div></div>
+  </div>
+  <div class="block">
+    <div class="img-row">
+      <div class="img-card img-full"><img src="virtual terminal valor.png" alt="Virtual terminal payment processing"/><div class="img-cap">Virtual Terminal — process any payment from your browser, no hardware needed</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:12.5px;margin-bottom:12px;">The Virtual Terminal lets you process credit cards, debit cards, ACH, and Vault customer payments directly from a web browser. It's the primary tool for manual keyed-entry transactions and is the <strong style="color:var(--text);">only place Vault customer cards can be charged.</strong></p>
+
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Payment Tabs Available</div>
+    <div class="gauto">
+      <div class="card card-blue"><h4>💳 Sale</h4><p>Immediate auth + capture. Most common. Money charged right away.</p></div>
+      <div class="card card-indigo"><h4>🔁 Recurring</h4><p>Set up a recurring payment schedule — daily, weekly, monthly.</p></div>
+      <div class="card card-amber"><h4>🔒 Authorization</h4><p>Auth only — hold funds without charging. Capture later.</p></div>
+      <div class="card card-teal"><h4>↩️ Refund</h4><p>Process a refund back to the original card.</p></div>
+      <div class="card card-green"><h4>📄 E-Invoice</h4><p>Send a payment link to customer via email to pay themselves.</p></div>
+      <div class="card card-purple"><h4>📱 QR Pay</h4><p>Generate a QR code the customer scans to pay.</p></div>
+      <div class="card card-rose"><h4>💵 Cash</h4><p>Record a cash payment for tracking purposes.</p></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Using a Vault Customer in Virtual Terminal</div>
+    <div class="flow">
+      <div class="flow-item"><div class="fc" style="background:#7c3aed;">1</div><div class="fb"><strong>Navigate to Vault → List Customer</strong><span>Find the customer you want to charge</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#7c3aed;">2</div><div class="fb"><strong>Click ⋮ → Process Transaction</strong><span>You're redirected automatically to the Virtual Terminal</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#7c3aed;">3</div><div class="fb"><strong>Customer data auto-populates</strong><span>Name, address, and saved cards appear. No CVV required for Vault transactions.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#7c3aed;">4</div><div class="fb"><strong>Select card, enter amount, click Process Payment</strong><span>Transaction processed immediately</span></div></div>
+    </div>
+    <div class="callout ca"><strong>⚠️ Important: Vault Cards = Virtual Terminal Only</strong><p>Saved card details from The Vault can ONLY be charged through the Virtual Terminal. They cannot be charged from POS devices, mobile apps, or RCKT devices directly.</p></div>
+  </div>
+</div>
+
+<div id="settings">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">7</div>
+    <div><div class="ch-label" style="color:#0d9488;">Settings</div><div class="ch-title">Settings &amp; Merchant Configuration</div><div class="ch-desc">Where you configure your account, stores, taxes, tips, and more.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div class="card card-valor"><h4>🏪 Store Settings</h4><ul><li>Business name, address, contact info</li><li>MCC (Merchant Category Code)</li><li>Time zone and currency</li><li>Receipt customization (logo, footer text)</li></ul></div>
+      <div class="card card-blue"><h4>💰 Payment Settings</h4><ul><li>Tip prompt settings (%, custom amount)</li><li>Tax rate configuration</li><li>Surcharge / cash discount settings</li><li>Minimum transaction amounts</li></ul></div>
+      <div class="card card-green"><h4>👥 User Management</h4><ul><li>Add/remove operators</li><li>Set module permissions per user</li><li>Reset passwords</li><li>Assign stores to users</li></ul></div>
+      <div class="card card-teal"><h4>📦 Module Access</h4><ul><li>Enable/disable Vault for operators</li><li>Control Transactions access</li><li>Manage Virtual Terminal access</li><li>Reports visibility per user</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div id="reports">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">8</div>
+    <div><div class="ch-label" style="color:#0d9488;">Reports</div><div class="ch-title">Reports &amp; Batch Search</div><div class="ch-desc">Find settled batches, daily totals, and reconcile deposits.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div class="card card-indigo"><h4>📋 Batch Reports</h4><p>View all submitted batches, their settlement status, and totals. Each batch contains all transactions from a given period.</p></div>
+      <div class="card card-blue"><h4>📊 Transaction Reports</h4><p>Detailed breakdown of transactions by type, card brand, amount range, date range, or processor.</p></div>
+      <div class="card card-green"><h4>💳 Deposit Reconciliation</h4><p>Match settled batches to actual bank deposits. Used to verify what was received in your bank account.</p></div>
+      <div class="card card-amber"><h4>📥 Download Center</h4><p>Export reports as CSV. Download statements, software updates, and compliance documents.</p></div>
+    </div>
+    <div class="callout cb" style="margin-top:10px;"><strong>Batch Search</strong><p>Use the Batch Search tool to find any historical batch by date, amount, or batch number. Useful for reconciliation and chargeback response preparation.</p></div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 3 — API ══════════ -->
+<div class="section-banner sb-blue">
+  <div class="sb-num">3</div>
+  <div><div class="sb-label">Section 3</div><div class="sb-title">API &amp; Integration</div><div class="sb-desc">Base URLs, API keys, sample requests, webhooks — everything for developers</div></div>
+</div>
+
+<div id="api-basics">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#2563eb;">9</div>
+    <div><div class="ch-label" style="color:#2563eb;">API Basics</div><div class="ch-title">API Basics &amp; Base URLs</div><div class="ch-desc">Sandbox for testing, production for live transactions.</div></div>
+  </div>
+  <div class="block">
+    <p style="color:var(--muted);font-size:12.5px;margin-bottom:12px;">Valor PayTech provides a <strong style="color:var(--text);">REST API</strong> for developers to integrate payment processing directly into websites, mobile apps, and third-party ERP/POS systems. All requests use <strong style="color:var(--text);">JSON</strong> format.</p>
+    <div class="mode-grid">
+      <div class="mode-test">
+        <div class="mode-badge mb-test">🧪 SANDBOX — TEST MODE</div>
+        <h4>Development &amp; Testing</h4>
+        <p style="font-size:11px;color:#92400e;margin-bottom:7px;">No real money. Use for all development and QA work.</p>
+        <ul>
+          <li>Portal: <code style="font-family:'Courier New',monospace;font-size:10px;background:rgba(0,0,0,.08);padding:1px 4px;border-radius:2px;">https://vponline.valorpaytech.com</code> (sandbox account)</li>
+          <li>API Endpoint: (use sandbox EPI credentials)</li>
+          <li>Test card: 4111 1111 1111 1111</li>
+          <li>Any future expiry date, any CVV</li>
+          <li>Zero real charges</li>
+        </ul>
+      </div>
+      <div class="mode-live">
+        <div class="mode-badge mb-live">🟢 PRODUCTION — LIVE MODE</div>
+        <h4>Live Production Environment</h4>
+        <p style="font-size:11px;color:#166534;margin-bottom:7px;">Real money. Real cards. All charges are final.</p>
+        <ul>
+          <li>Portal: <code style="font-family:'Courier New',monospace;font-size:10px;background:rgba(0,0,0,.08);padding:1px 4px;border-radius:2px;">https://vponline.valorpaytech.com</code> (live account)</li>
+          <li>Real API credentials required</li>
+          <li>Transactions appear on cardholder statements</li>
+          <li>Settlement occurs 1–3 business days</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout cr" style="margin-top:10px;"><strong>⚠️ Never Mix Credentials</strong><p>Sandbox credentials will not work in production and vice versa. Always confirm which environment you're targeting before running any transaction.</p></div>
+  </div>
+</div>
+
+<div id="api-keys">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#2563eb;">10</div>
+    <div><div class="ch-label" style="color:#2563eb;">Credentials</div><div class="ch-title">API Keys &amp; Credentials — How to Find &amp; Generate</div><div class="ch-desc">The four key values you need for every integration.</div></div>
+  </div>
+  <div class="block">
+    <div class="img-row">
+     
+      <div class="img-card img-full"><img src="valor API.png" alt="Valor API"/><div class="img-cap">Valor API interface (valor API)</div></div>
+    </div>
+
+    <div class="callout cv" style="margin-bottom:14px;">
+      <strong>📍 Where to Find Your App Credentials in Valor</strong>
+      <p>Log in to VPOnline → <strong>Virtual Terminal</strong> (or <strong>Settings</strong>) → <strong>API Keys</strong> or <strong>APP KEYS</strong>.</p>
+    </div>
+
+    <div class="cred-grid">
+      <div class="cred-card cc1">
+        <div class="cred-icon">🆔</div>
+        <div class="cred-name">App ID</div>
+        <div class="cred-key">appid</div>
+        <div class="cred-desc">The application identifier for your EPI/System. Required on every API request to identify the application context.</div>
+      </div>
+      <div class="cred-card cc2">
+        <div class="cred-icon">🔑</div>
+        <div class="cred-name">App Key</div>
+        <div class="cred-key">appkey</div>
+        <div class="cred-desc">The key used for authenticating your API calls (equivalent to API key). Keep it secret and never expose it client-side.</div>
+      </div>
+      <div class="cred-card cc3">
+        <div class="cred-icon">🏪</div>
+        <div class="cred-name">EPI Number</div>
+        <div class="cred-key">epi</div>
+        <div class="cred-desc">Electronic Payment Identifier (EPI) for your merchant account—the EPI selects the payment endpoint context.</div>
+      </div>
+      <div class="cred-card cc4">
+        <div class="cred-icon">🔐</div>
+        <div class="cred-name">Vault Token</div>
+        <div class="cred-key">token</div>
+        <div class="cred-desc">Returned when card data is tokenized in the device vault. Used for safe recurring/one-touch charges.</div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#2563eb;">→</div>How to Generate App ID &amp; App Key</div>
+    <div class="flow">
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">1</div><div class="fb"><strong>Via Virtual Terminal</strong><span>Log in to your Valor Portal, click <strong>Virtual Terminal</strong> from left sidebar, then click <strong>Manage</strong>.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">2</div><div class="fb"><strong>Open API Keys / APP KEYS tab</strong><span>Choose the API Keys (or APP KEYS) tab in the Virtual Terminal management view.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">3</div><div class="fb"><strong>Select your EPI</strong><span>Choose the specific EPI (Endpoint Identifier) for which you want to generate or view keys.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">4</div><div class="fb"><strong>Copy App ID and App Key</strong><span>Your APP ID and API Key (App Key) will be displayed there. Copy immediately as they are secret values.</span></div></div>
+    </div>
+
+    <div class="flow" style="margin-top:12px;">
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">5</div><div class="fb"><strong>Via Settings</strong><span>Click <strong>Settings</strong> in the main sidebar menu, then select <strong>API Keys</strong> sub-menu.</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#2563eb;">6</div><div class="fb"><strong>Select the EPI</strong><span>Pick the relevant EPI from the list to view or generate your App ID and App Key.</span></div></div>
+    </div>
+
+    <div class="callout ca" style="margin-top:12px;"><strong>⚠️ Keep App Key Secret</strong><p>Keep App Key secure (server-only). If exposed, regenerate it immediately and update all integrations.</p></div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#2563eb;">→</div>Credential Security Rules</div>
+    <table>
+      <thead><tr><th>Credential</th><th>Used In</th><th>Safe to Expose?</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>EPI</code></td><td>Every API request</td><td><span class="tag t-slate">Server-side only</span></td><td>Merchant account identifier</td></tr>
+        <tr><td><code>API Key</code></td><td>Every API request header</td><td><span class="tag t-rose">Never expose</span></td><td>Authentication token</td></tr>
+        <tr><td><code>Store ID</code></td><td>Transaction API requests</td><td><span class="tag t-slate">Server-side only</span></td><td>Location identification</td></tr>
+        <tr><td><code>Vault Token</code></td><td>Vault charge requests</td><td><span class="tag t-slate">Server-side only</span></td><td>Replaces raw card number</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="api-request">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#2563eb;">11</div>
+    <div><div class="ch-label" style="color:#2563eb;">API Requests</div><div class="ch-title">Sample API Requests</div><div class="ch-desc">Sale, Auth Only, Capture, Void, Refund, and Vault Token transactions.</div></div>
+  </div>
+  <div class="block">
+    <div class="block-title"><div class="bt-num" style="background:#2563eb;">1</div>Sale (Auth + Capture Immediately)</div>
+    <div class="code-block"><pre><span class="cc">// POST to Valor API endpoint</span>
+{
+  <span class="ck">"epi"</span>: <span class="cs">"YOUR_EPI_NUMBER"</span>,
+  <span class="ck">"apikey"</span>: <span class="cs">"YOUR_API_KEY"</span>,
+  <span class="ck">"storeid"</span>: <span class="cs">"YOUR_STORE_ID"</span>,
+  <span class="ck">"txntype"</span>: <span class="cv2">"sale"</span>,         <span class="cc">// Auth + Capture immediately</span>
+  <span class="ck">"amount"</span>: <span class="cv2">"10.00"</span>,
+  <span class="ck">"cardholdername"</span>: <span class="cs">"John Smith"</span>,
+  <span class="ck">"cardnumber"</span>: <span class="cs">"4111111111111111"</span>,
+  <span class="ck">"expirydate"</span>: <span class="cs">"1226"</span>,    <span class="cc">// Format: MMYY</span>
+  <span class="ck">"cvv"</span>: <span class="cs">"123"</span>,
+  <span class="ck">"billingaddress"</span>: <span class="cs">"123 Main St"</span>,
+  <span class="ck">"billingzip"</span>: <span class="cs">"10001"</span>
+}</pre></div>
+
+    <div class="block-title" style="margin-top:14px;"><div class="bt-num" style="background:#0d9488;">2</div>Auth Only (Hold, No Charge)</div>
+    <div class="code-block"><pre>{
+  <span class="ck">"epi"</span>: <span class="cs">"YOUR_EPI_NUMBER"</span>,
+  <span class="ck">"apikey"</span>: <span class="cs">"YOUR_API_KEY"</span>,
+  <span class="ck">"storeid"</span>: <span class="cs">"YOUR_STORE_ID"</span>,
+  <span class="ck">"txntype"</span>: <span class="cv2">"authonly"</span>,     <span class="cc">// Authorize only — no capture</span>
+  <span class="ck">"amount"</span>: <span class="cv2">"50.00"</span>,
+  <span class="ck">"cardnumber"</span>: <span class="cs">"4111111111111111"</span>,
+  <span class="ck">"expirydate"</span>: <span class="cs">"1226"</span>,
+  <span class="ck">"cvv"</span>: <span class="cs">"123"</span>
+  <span class="cc">// Returns: authcode to use for later capture</span>
+}</pre></div>
+
+    <div class="block-title" style="margin-top:14px;"><div class="bt-num" style="background:#7c3aed;">3</div>Vault Token Transaction (No Card Number Needed)</div>
+    <div class="code-block"><pre>{
+  <span class="ck">"epi"</span>: <span class="cs">"YOUR_EPI_NUMBER"</span>,
+  <span class="ck">"apikey"</span>: <span class="cs">"YOUR_API_KEY"</span>,
+  <span class="ck">"storeid"</span>: <span class="cs">"YOUR_STORE_ID"</span>,
+  <span class="ck">"txntype"</span>: <span class="cv2">"sale"</span>,
+  <span class="ck">"amount"</span>: <span class="cv2">"25.00"</span>,
+  <span class="ck">"token"</span>: <span class="cs">"VAULT_TOKEN_FROM_THE_VAULT"</span>,
+  <span class="cc">// No card number, CVV, or expiry needed — token covers it</span>
+  <span class="cc">// CVV not required for Vault token transactions</span>
+}</pre></div>
+
+    <div class="block-title" style="margin-top:14px;"><div class="bt-num" style="background:#e11d48;">4</div>Void Transaction</div>
+    <div class="code-block"><pre>{
+  <span class="ck">"epi"</span>: <span class="cs">"YOUR_EPI_NUMBER"</span>,
+  <span class="ck">"apikey"</span>: <span class="cs">"YOUR_API_KEY"</span>,
+  <span class="ck">"txntype"</span>: <span class="cv2">"void"</span>,
+  <span class="ck">"retrieverefnum"</span>: <span class="cs">"ORIGINAL_TXN_REFERENCE_NUMBER"</span>
+  <span class="cc">// Only works BEFORE settlement. After = use refund.</span>
+}</pre></div>
+
+    <div class="block-title" style="margin-top:14px;"><div class="bt-num" style="background:#ec4899;">5</div>Refund Transaction</div>
+    <div class="code-block"><pre>{
+  <span class="ck">"epi"</span>: <span class="cs">"YOUR_EPI_NUMBER"</span>,
+  <span class="ck">"apikey"</span>: <span class="cs">"YOUR_API_KEY"</span>,
+  <span class="ck">"txntype"</span>: <span class="cv2">"refund"</span>,
+  <span class="ck">"amount"</span>: <span class="cv2">"10.00"</span>,          <span class="cc">// Partial or full refund amount</span>
+  <span class="ck">"retrieverefnum"</span>: <span class="cs">"ORIGINAL_TXN_REFERENCE_NUMBER"</span>
+  <span class="cc">// Works AFTER settlement. Returns money to customer's card.</span>
+}</pre></div>
+
+    <div class="block-title" style="margin-top:14px;"><div class="bt-num" style="background:#0d9488;">6</div>Typical API Response</div>
+    <div class="code-block"><pre>{
+  <span class="ck">"responsecode"</span>: <span class="cv2">"00"</span>,          <span class="cc">// 00 = Approved</span>
+  <span class="ck">"responsemessage"</span>: <span class="cs">"APPROVED"</span>,
+  <span class="ck">"authcode"</span>: <span class="cs">"TAS123"</span>,          <span class="cc">// Authorization code from bank</span>
+  <span class="ck">"retrieverefnum"</span>: <span class="cs">"40789012345"</span>,  <span class="cc">// Reference number for void/refund</span>
+  <span class="ck">"token"</span>: <span class="cs">"VLT_TOKEN_XXXX"</span>,    <span class="cc">// Vault token (if tokenization enabled)</span>
+  <span class="ck">"avsresponse"</span>: <span class="cs">"Y"</span>,            <span class="cc">// Y = address and ZIP match</span>
+  <span class="ck">"cvvresponse"</span>: <span class="cs">"M"</span>             <span class="cc">// M = CVV matched</span>
+}</pre></div>
+    <div class="callout ca"><strong>Key Response Codes</strong><p><code>00</code> = Approved &nbsp;|&nbsp; <code>05</code> = Declined (Do Not Honor) &nbsp;|&nbsp; <code>51</code> = Insufficient Funds &nbsp;|&nbsp; <code>14</code> = Invalid Card Number &nbsp;|&nbsp; <code>54</code> = Expired Card</p></div>
+  </div>
+</div>
+
+<div id="webhooks">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#2563eb;">12</div>
+    <div><div class="ch-label" style="color:#2563eb;">Webhooks</div><div class="ch-title">Webhooks &amp; Callbacks</div><div class="ch-desc">Get notified automatically when payment events occur.</div></div>
+  </div>
+  <div class="block">
+    <p style="color:var(--muted);font-size:12.5px;margin-bottom:12px;">Webhooks allow Valor to send real-time HTTP POST notifications to your server when events happen — a transaction completes, a recurring payment fails, a chargeback is filed, etc.</p>
+    <div class="g2">
+      <div class="card card-blue"><h4>🔔 Events That Trigger Webhooks</h4><ul><li>Transaction approved / declined</li><li>Recurring payment processed or failed</li><li>Batch settled</li><li>Chargeback received</li><li>Vault customer added / deleted</li><li>ACH return received</li></ul></div>
+      <div class="card card-teal"><h4>⚙️ Webhook Configuration</h4><ul><li>Configure webhook URL in Settings</li><li>Valor sends HTTP POST with JSON payload</li><li>Your server must respond with HTTP 200</li><li>Validate payload using your signature key</li><li>Log all incoming webhooks for audit trail</li></ul></div>
+    </div>
+    <div class="callout cb" style="margin-top:10px;"><strong>Webhook Best Practice</strong><p>Always respond to webhooks immediately with HTTP 200 before doing any processing. If your server takes too long, Valor may retry the webhook. Process the event asynchronously in a queue to avoid timeouts.</p></div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 4 — VAULT ══════════ -->
+<div class="section-banner sb-purple">
+  <div class="sb-num">4</div>
+  <div><div class="sb-label">Section 4</div><div class="sb-title">The Vault &amp; Tokenization</div><div class="sb-desc">Securely store customer cards — charge later without re-entering card details</div></div>
+</div>
+
+<div id="vault-overview">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#7c3aed;">13</div>
+    <div><div class="ch-label" style="color:#7c3aed;">The Vault</div><div class="ch-title">The Vault — Overview &amp; Benefits</div><div class="ch-desc">PCI-compliant tokenization — store cards safely, charge without CVV.</div></div>
+  </div>
+  <div class="block">
+    <div class="img-row">
+      <div class="img-card img-full"><img src="valor-vault.png" alt="Secure vault tokenization"/><div class="img-cap">The Vault — encrypts and tokenizes every card the first time it's used</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:12px;"><strong style="color:var(--text);">The Vault powered by Valor</strong> is a premium feature that lets merchants securely store and retrieve customer card details — enabling quick transactions without re-entering card information. Cards are encrypted and replaced with unique tokens following PCI DSS standards.</p>
+
+    <div class="vault-feature"><div class="vault-feature-icon">🔐</div><div class="vault-feature-body"><strong>Tokenization</strong><p>Real card numbers are replaced with a unique token (e.g., VLT_TOKEN_XXXX). The merchant never stores or sees the raw card number after the initial entry.</p></div></div>
+    <div class="vault-feature"><div class="vault-feature-icon">📋</div><div class="vault-feature-body"><strong>Up to 5 Cards Per Customer</strong><p>Each Vault customer can have up to 5 saved cards and 5 address records. Cards can be deleted or added at any time.</p></div></div>
+    <div class="vault-feature"><div class="vault-feature-icon">🚫</div><div class="vault-feature-body"><strong>CVV Not Required for Vault Charges</strong><p>Once a card is tokenized, CVV is not required to process future charges. The token carries the card's validity.</p></div></div>
+    <div class="vault-feature"><div class="vault-feature-icon">🔁</div><div class="vault-feature-body"><strong>Recurring Billing Support</strong><p>Vault tokens can be used for automated recurring billing — weekly, monthly, or custom schedules.</p></div></div>
+    <div class="vault-feature"><div class="vault-feature-icon">📊</div><div class="vault-feature-body"><strong>Audit Log</strong><p>Every change to a customer's Vault record is logged — who changed it, when, from what IP, and what changed.</p></div></div>
+
+    <div class="callout cp" style="margin-top:12px;">
+      <strong>🔓 Enabling The Vault</strong>
+      <p>The Vault is a premium module. ISO or Sub-ISO must enable it for merchants during onboarding. To check: look for "Vault" in the left sidebar of VPOnline. If not visible, contact your ISO to enable it. Merchants must then enable it for their operators.</p>
+    </div>
+  </div>
+</div>
+
+<div id="vault-add">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#7c3aed;">14</div>
+    <div><div class="ch-label" style="color:#7c3aed;">Adding Customers</div><div class="ch-title">Adding Customers to The Vault</div><div class="ch-desc">Two methods — manual entry or from existing transactions.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">Method 1 — Manual Entry</div>
+        <div class="flow">
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">1</div><div class="fb"><strong>Vault → Add Customer</strong><span>Click Add Customer in the left sidebar under Vault</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">2</div><div class="fb"><strong>Enter Customer Info</strong><span>Customer name, company, phone, email address</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">3</div><div class="fb"><strong>Add Card Details</strong><span>PAN number, expiry date (MM/YY), cardholder name</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">4</div><div class="fb"><strong>Add Address Details</strong><span>Billing and shipping address (up to 5 address labels)</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">5</div><div class="fb"><strong>Click Save</strong><span>Card is encrypted and tokenized. Customer profile created.</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">Method 2 — From Processed Transaction</div>
+        <div class="flow">
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">1</div><div class="fb"><strong>Go to Transactions</strong><span>Find any completed transaction from POS, mobile, RCKT, or e-commerce</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">2</div><div class="fb"><strong>Click ⋮ → Add to Vault</strong><span>Cardholder name and card details auto-populate from the transaction</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">3</div><div class="fb"><strong>Add personal details</strong><span>Add phone, email, shipping/billing address if needed</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">4</div><div class="fb"><strong>Click Save</strong><span>Customer added to Vault with card already tokenized</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout ca"><strong>Fields Required When Adding a Card</strong><p>PAN (card number), Expiry Date (MM/YY), Cardholder Name. CVV is NOT stored per PCI DSS. Address is optional but recommended for AVS verification on future charges.</p></div>
+  </div>
+</div>
+
+<div id="vault-manage">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#7c3aed;">15</div>
+    <div><div class="ch-label" style="color:#7c3aed;">Managing</div><div class="ch-title">Managing Vault Customers &amp; Processing</div><div class="ch-desc">View, edit, process, and delete Vault customer records.</div></div>
+  </div>
+  <div class="block">
+    <div class="block-title"><div class="bt-num" style="background:#7c3aed;">→</div>List Customer Page — Actions Available (⋮ menu)</div>
+    <table>
+      <thead><tr><th>Action</th><th>What It Does</th><th>Where It Goes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>View/Edit Customer</strong></td><td>Update card details, add/remove cards, change address</td><td>Edit Customer page</td></tr>
+        <tr><td><strong>View Transaction</strong></td><td>See all past transactions processed using this Vault customer</td><td>Transaction history</td></tr>
+        <tr><td><strong>View Recurring</strong></td><td>See all active and past recurring billing schedules</td><td>Recurring Billing page</td></tr>
+        <tr><td><strong>Process Transaction</strong></td><td>Charge this customer — redirects to Virtual Terminal with card pre-loaded</td><td>Virtual Terminal</td></tr>
+        <tr><td><strong>Audit Log</strong></td><td>See every change ever made to this customer's record</td><td>Audit log page</td></tr>
+        <tr><td><strong>Delete Customer</strong></td><td>Permanently remove the customer and all their saved cards from Vault</td><td>Confirmation dialog</td></tr>
+      </tbody>
+    </table>
+    <div class="callout cv" style="margin-top:10px;"><strong>Audit Log — What It Tracks</strong><p>Every modification is recorded: Audit ID, who performed the action, timestamp (EST), what module, which user ID, client IP address, and browser. Changes to address and card details are logged separately under "AddressDetails" and "CardDetails" sections.</p></div>
+  </div>
+</div>
+
+<div id="vault-recurring">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#7c3aed;">16</div>
+    <div><div class="ch-label" style="color:#7c3aed;">Recurring</div><div class="ch-title">Recurring Billing via The Vault</div><div class="ch-desc">Automated subscription payments using stored tokens.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div class="card card-purple"><h4>🔁 Setting Up Recurring</h4><ul><li>From Virtual Terminal → Recurring tab</li><li>Select a Vault customer's saved card</li><li>Set: amount, frequency, start date, number of payments</li><li>Frequencies: Daily, Weekly, Bi-weekly, Monthly, Quarterly, Annual</li></ul></div>
+      <div class="card card-blue"><h4>📊 Tracking Recurring Payments</h4><ul><li>Vault → List Customer → ⋮ → View Recurring</li><li>Shows: subscription ID, type, frequency, start/next date, amount, total paid, status</li><li>Card status shown (active/inactive)</li></ul></div>
+    </div>
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#7c3aed;">→</div>Recurring Management Options</div>
+    <div class="gauto">
+      <div class="card"><h4>▶️ Active</h4><p>Subscription is processing on schedule automatically</p></div>
+      <div class="card"><h4>⏸️ Pause</h4><p>Temporarily stop without cancelling — resume later</p></div>
+      <div class="card"><h4>⏹️ Cancel</h4><p>Permanently stop the subscription</p></div>
+      <div class="card"><h4>✏️ Edit Amount</h4><p>Modify the billing amount before next charge</p></div>
+      <div class="card"><h4>📅 Edit Schedule</h4><p>Change next billing date or frequency</p></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 5 — FRAUD ══════════ -->
+<div class="section-banner sb-rose">
+  <div class="sb-num">5</div>
+  <div><div class="sb-label">Section 5</div><div class="sb-title">Fraud &amp; Security</div><div class="sb-desc">Valor Shield RT, AVS, CVV, PCI DSS, and encryption</div></div>
+</div>
+
+<div id="fraud">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#e11d48;">17</div>
+    <div><div class="ch-label" style="color:#e11d48;">Fraud Tools</div><div class="ch-title">Valor Shield RT &amp; Fraud Protection</div><div class="ch-desc">Real-time fraud detection built into every transaction.</div></div>
+  </div>
+  <div class="block">
+    <div class="img-row">
+      <div class="img-card img-full"><img src="valor shield.png" alt="Fraud protection security"/><div class="img-cap">Valor Shield RT — real-time fraud detection on every transaction</div></div>
+    </div>
+    <p style="color:var(--muted);font-size:12.5px;margin-bottom:12px;"><strong style="color:var(--text);">Valor Shield RT</strong> is Valor's real-time fraud detection module. It evaluates every transaction against configurable rules before forwarding for bank authorization. Suspicious transactions can be auto-declined, held for review, or flagged.</p>
+
+    <div class="block-title"><div class="bt-num" style="background:#e11d48;">→</div>AVS — Address Verification System</div>
+    <table>
+      <thead><tr><th>Code</th><th>Address Match?</th><th>ZIP Match?</th><th>Meaning &amp; Action</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag t-green">Y</span></td><td>✅ Yes</td><td>✅ Yes</td><td>Full match — lowest fraud risk. Proceed normally.</td></tr>
+        <tr><td><span class="tag t-amber">A</span></td><td>✅ Yes</td><td>❌ No</td><td>Street matches but ZIP doesn't. Review or proceed with caution.</td></tr>
+        <tr><td><span class="tag t-amber">Z</span></td><td>❌ No</td><td>✅ Yes</td><td>ZIP matches but street doesn't. Review.</td></tr>
+        <tr><td><span class="tag t-rose">N</span></td><td>❌ No</td><td>❌ No</td><td>Neither matches — high fraud risk. Strongly consider declining.</td></tr>
+        <tr><td><span class="tag t-slate">U</span></td><td>—</td><td>—</td><td>Unavailable — issuer doesn't support AVS. Common with international cards.</td></tr>
+        <tr><td><span class="tag t-slate">P</span></td><td>—</td><td>—</td><td>Not supported — card type or issuer doesn't participate.</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#e11d48;">→</div>CVV — Card Verification Value Codes</div>
+    <table>
+      <thead><tr><th>Code</th><th>Meaning</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag t-green">M</span></td><td>CVV matches — correct code provided</td><td>Proceed normally</td></tr>
+        <tr><td><span class="tag t-rose">N</span></td><td>CVV does not match — incorrect code</td><td>Decline or hold for review</td></tr>
+        <tr><td><span class="tag t-rose">S</span></td><td>CVV required but not provided</td><td>Ask customer to re-enter CVV</td></tr>
+        <tr><td><span class="tag t-amber">U</span></td><td>Unable to verify — issuer doesn't support it</td><td>Use other signals to decide</td></tr>
+        <tr><td><span class="tag t-amber">P</span></td><td>CVV not processed by issuer</td><td>Treat as unverified, apply caution</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#e11d48;">→</div>Common Fraud Risk Flags</div>
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="background:var(--rose-light);border:1px solid #fecdd3;border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--rose);">🚨 Velocity Triggers</strong><p style="font-size:11px;color:#9f1239;">Too many transactions from same card or IP in short time — card testing pattern</p></div>
+        <div style="background:var(--rose-light);border:1px solid #fecdd3;border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--rose);">💰 Unusually Large Amount</strong><p style="font-size:11px;color:#9f1239;">Transaction far exceeds merchant's typical average — processor may hold account</p></div>
+        <div style="background:var(--rose-light);border:1px solid #fecdd3;border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--rose);">🌍 Geographic Mismatch</strong><p style="font-size:11px;color:#9f1239;">Card BIN country doesn't match billing address or IP location</p></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--amber);">⚠️ AVS + CVV Both Fail</strong><p style="font-size:11px;color:#92400e;">Both address and CVV mismatch simultaneously — very high risk signal</p></div>
+        <div style="background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--amber);">🔢 Multiple Declines Same Card</strong><p style="font-size:11px;color:#92400e;">Same card declined multiple times — potential stolen card being tested</p></div>
+        <div style="background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:7px;padding:8px 11px;"><strong style="font-size:11.5px;color:var(--amber);">📱 Card Testing Pattern</strong><p style="font-size:11px;color:#92400e;">Small amounts ($0.01, $1.00) followed by larger charges — confirms card works</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pci">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#e11d48;">18</div>
+    <div><div class="ch-label" style="color:#e11d48;">Security</div><div class="ch-title">PCI DSS &amp; Encryption</div><div class="ch-desc">How Valor keeps card data secure and what it means for merchants.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div class="card card-rose"><h4>🛡️ PCI DSS Compliance</h4><p><strong>Payment Card Industry Data Security Standard.</strong> Valor is PCI DSS compliant — all card data is handled according to these mandatory industry security rules.</p><ul style="margin-top:7px;"><li>Card numbers encrypted at rest and in transit</li><li>CVV never stored after authorization</li><li>Tokenization eliminates PAN storage risk</li><li>Regular security audits performed</li></ul></div>
+      <div class="card card-blue"><h4>🔒 How Encryption Works</h4><ul><li><strong>SSL/TLS:</strong> All data transmitted over HTTPS encrypted connections</li><li><strong>Tokenization:</strong> Raw PAN replaced with token at first use</li><li><strong>Point-to-Point Encryption (P2PE):</strong> Card encrypted at hardware device level</li><li>Valor never stores raw CVV — ever</li><li>Merchants using Vault are significantly reducing their PCI scope</li></ul></div>
+    </div>
+    <div class="callout cg" style="margin-top:10px;"><strong>✅ Merchant PCI Benefit</strong><p>By using The Vault and Virtual Terminal, merchants significantly reduce their PCI DSS compliance burden. Raw card data flows through Valor's PCI-compliant infrastructure — merchants never store or handle card numbers themselves.</p></div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 6 — TRANSACTION TYPES ══════════ -->
+<div class="section-banner sb-green">
+  <div class="sb-num">6</div>
+  <div><div class="sb-label">Section 6</div><div class="sb-title">Transaction Types</div><div class="sb-desc">All transaction types available in Valor and when to use each</div></div>
+</div>
+
+<div id="txn-types">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#059669;">19</div>
+    <div><div class="ch-label" style="color:#059669;">Types</div><div class="ch-title">All Transaction Types in Valor</div><div class="ch-desc">From sale to refund — every type with use cases.</div></div>
+  </div>
+  <div class="block">
+    <div style="background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1px solid #bbf7d0;border-radius:8px;padding:11px 13px;margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:5px;">🧠 Mental Model</div>
+      <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:11.5px;color:#065f46;">
+        <div style="background:white;border:1px solid #bbf7d0;border-radius:5px;padding:4px 8px;text-align:center;"><strong>Auth</strong><br/><span style="font-size:9px;">"Is money there?"</span></div>
+        <span style="color:#6ee7b7;">→</span>
+        <div style="background:white;border:1px solid #bbf7d0;border-radius:5px;padding:4px 8px;text-align:center;"><strong>Capture</strong><br/><span style="font-size:9px;">"Charge it now"</span></div>
+        <span style="color:#6ee7b7;">→</span>
+        <div style="background:white;border:1px solid #bbf7d0;border-radius:5px;padding:4px 8px;text-align:center;"><strong>Settle</strong><br/><span style="font-size:9px;">"Move money"</span></div>
+        <span style="color:#6ee7b7;">or</span>
+        <div style="background:white;border:1px solid #fecdd3;border-radius:5px;padding:4px 8px;text-align:center;"><strong>Void</strong><br/><span style="font-size:9px;">"Cancel before settle"</span></div>
+        <span style="color:#6ee7b7;">or</span>
+        <div style="background:white;border:1px solid #fecdd3;border-radius:5px;padding:4px 8px;text-align:center;"><strong>Refund</strong><br/><span style="font-size:9px;">"Return after settle"</span></div>
+      </div>
+    </div>
+
+    <div class="txn-grid">
+      <div class="txn-card tc1"><div class="txn-num">Type 01</div><h4>Sale (Auth + Capture)</h4><p>Immediate auth and charge. Most common type.</p><div class="txn-uc"><strong>Use Case</strong>Retail checkout, online purchases, most payments</div></div>
+      <div class="txn-card tc2"><div class="txn-num">Type 02</div><h4>Auth Only</h4><p>Verify funds and hold — no charge yet.</p><div class="txn-uc"><strong>Use Case</strong>Hotels at check-in, car rentals, gas stations</div></div>
+      <div class="txn-card tc3"><div class="txn-num">Type 03</div><h4>Capture</h4><p>Complete a previous Auth Only transaction.</p><div class="txn-uc"><strong>Use Case</strong>Ship an order, finalize hotel bill at checkout</div></div>
+      <div class="txn-card tc4"><div class="txn-num">Type 04</div><h4>Void</h4><p>Cancel before settlement — hold released, no money moves.</p><div class="txn-uc"><strong>Use Case</strong>Customer cancels order, incorrect transaction</div></div>
+      <div class="txn-card tc5"><div class="txn-num">Type 05</div><h4>Refund</h4><p>Return money after settlement (3–5 business days).</p><div class="txn-uc"><strong>Use Case</strong>Customer returns product, service dispute resolution</div></div>
+      <div class="txn-card tc6"><div class="txn-num">Type 06</div><h4>Recurring Payment</h4><p>Automated charge on a schedule using stored token.</p><div class="txn-uc"><strong>Use Case</strong>Subscriptions, membership dues, monthly billing</div></div>
+      <div class="txn-card tc7"><div class="txn-num">Type 07</div><h4>ACH / eCheck</h4><p>Direct bank debit — lower fees than cards.</p><div class="txn-uc"><strong>Use Case</strong>Large B2B payments, recurring bills, payroll</div></div>
+      <div class="txn-card tc8"><div class="txn-num">Type 08</div><h4>Invoice / Link Payment</h4><p>Email payment link — customer pays themselves.</p><div class="txn-uc"><strong>Use Case</strong>Remote customers, service invoices, freelancers</div></div>
+    </div>
+
+    <div class="callout cr" style="margin-top:12px;"><strong>⚠️ Void vs Refund — Critical Difference</strong><p><strong>Void</strong> = before settlement. No money has moved. Hold released immediately. <strong>Refund</strong> = after settlement. Money already in merchant's account — now reversed back to customer's card in 3–5 business days.</p></div>
+
+    <hr class="divider"/>
+    <div class="block-title">Transaction Timing Reference</div>
+    <table>
+      <thead><tr><th>Stage</th><th>Timing</th><th>Money Moved?</th><th>Customer Statement</th><th>Reversible?</th></tr></thead>
+      <tbody>
+        <tr><td>Authorization</td><td>~2 seconds</td><td><span class="tag t-rose">No</span></td><td>Pending</td><td>Yes — Void</td></tr>
+        <tr><td>Capture</td><td>Same day (batch)</td><td><span class="tag t-amber">Queued</span></td><td>Pending</td><td>Yes — Void (before EOD)</td></tr>
+        <tr><td>Settlement</td><td>1–3 business days</td><td><span class="tag t-green">Yes</span></td><td>Posted</td><td>Refund only</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 7 — ACH ══════════ -->
+<div class="section-banner sb-teal">
+  <div class="sb-num">7</div>
+  <div><div class="sb-label">Section 7</div><div class="sb-title">ACH &amp; Recurring Billing</div><div class="sb-desc">Direct bank transfers, ACH returns, and subscription management</div></div>
+</div>
+
+<div id="ach">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">20</div>
+    <div><div class="ch-label" style="color:#0d9488;">ACH</div><div class="ch-title">ACH / eCheck Payments in Valor</div><div class="ch-desc">Process bank-to-bank transfers — no card network, lower fees.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div class="card card-teal"><h4>📋 What ACH Requires</h4><ul><li>Bank Routing Number (9-digit ABA number)</li><li>Account Number (checking or savings)</li><li>Account Type (Checking / Savings)</li><li>Account Holder Name</li></ul></div>
+      <div class="card card-blue"><h4>✅ Why Use ACH in Valor</h4><ul><li>Much lower fees (~$0.25–$1.50 flat vs 2–3% card)</li><li>Available in Virtual Terminal → ACH tab</li><li>Supports recurring ACH billing</li><li>Ideal for B2B, large invoices, subscriptions</li></ul></div>
+    </div>
+    <div class="block-title" style="margin-top:12px;"><div class="bt-num" style="background:#0d9488;">→</div>Common ACH Return Codes</div>
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="err-row"><div class="err-code">R01</div><div class="err-body"><strong>Insufficient Funds</strong><p>Not enough money in account. Retry after customer adds funds.</p></div></div>
+        <div class="err-row"><div class="err-code">R02</div><div class="err-body"><strong>Account Closed</strong><p>Bank account closed. Get updated banking info from customer.</p></div></div>
+        <div class="err-row"><div class="err-code">R03</div><div class="err-body"><strong>No Account / Unable to Locate</strong><p>Account number doesn't match any account at that bank.</p></div></div>
+        <div class="err-row"><div class="err-code">R04</div><div class="err-body"><strong>Invalid Account Number</strong><p>Account number structure is invalid. Verify with customer.</p></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="err-row"><div class="err-code">R07</div><div class="err-body"><strong>Authorization Revoked</strong><p>Customer revoked the ACH authorization.</p></div></div>
+        <div class="err-row"><div class="err-code">R10</div><div class="err-body"><strong>Not Authorized</strong><p>Customer disputes — claims they never authorized the debit.</p></div></div>
+        <div class="err-row"><div class="err-code">R16</div><div class="err-body"><strong>Account Frozen</strong><p>Bank has frozen the account. Contact customer.</p></div></div>
+        <div class="err-row"><div class="err-code">R29</div><div class="err-body"><strong>Corporate Not Authorized</strong><p>Corporate account holder disputes authorization.</p></div></div>
+      </div>
+    </div>
+    <div class="callout ca"><strong>ACH Return Timing</strong><p>Unlike card declines (instant), ACH return codes arrive 1–3 business days after the transaction. Design your system to handle delayed failures and notify customers when ACH returns occur.</p></div>
+  </div>
+</div>
+
+<div id="recurring">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#0d9488;">21</div>
+    <div><div class="ch-label" style="color:#0d9488;">Recurring</div><div class="ch-title">Recurring &amp; Subscription Management</div><div class="ch-desc">Automated billing schedules — set it up once, Valor charges automatically.</div></div>
+  </div>
+  <div class="block">
+    <div class="g2">
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">Setting Up Recurring via Virtual Terminal</div>
+        <div class="flow">
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">1</div><div class="fb"><strong>Virtual Terminal → Recurring tab</strong><span>Select the Recurring payment type</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">2</div><div class="fb"><strong>Enter amount and schedule</strong><span>Amount, frequency (Monthly, Weekly, etc.), start date, number of billing cycles</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">3</div><div class="fb"><strong>Enter or select card</strong><span>New card entry or select from Vault customer stored cards</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#0d9488;">4</div><div class="fb"><strong>Process Payment</strong><span>First payment processed immediately. Subsequent payments automated per schedule.</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:8px;">Converting Existing Sale to Recurring</div>
+        <div class="flow">
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">1</div><div class="fb"><strong>Transactions → find the sale</strong><span>Locate any completed credit card sale</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">2</div><div class="fb"><strong>Click ⋮ → Convert to Recurring Payment</strong><span>The card is automatically saved and a recurring schedule is created</span></div></div>
+          <div class="flow-item"><div class="fc" style="background:#7c3aed;">3</div><div class="fb"><strong>Set schedule details</strong><span>Choose frequency, amount, number of cycles</span></div></div>
+        </div>
+        <div class="callout cp" style="margin-top:8px;"><strong>Recurring + Vault</strong><p>Best practice: add the customer to the Vault first, then set up recurring. This way you can manage the card and view recurring history together in one place.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 8 — REPORTING ══════════ -->
+<div class="section-banner sb-indigo">
+  <div class="sb-num">8</div>
+  <div><div class="sb-label">Section 8</div><div class="sb-title">Reporting &amp; Reconciliation</div><div class="sb-desc">Settled batches, transaction reports, and deposit matching</div></div>
+</div>
+
+<div id="reporting">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#4f46e5;">22</div>
+    <div><div class="ch-label" style="color:#4f46e5;">Reports</div><div class="ch-title">Reports, Batches &amp; Reconciliation</div><div class="ch-desc">Finding what was charged, what settled, and what hit the bank.</div></div>
+  </div>
+  <div class="block">
+    <div class="block-title"><div class="bt-num" style="background:#4f46e5;">→</div>Understanding the Batch &amp; Settlement Cycle</div>
+    <div class="flow">
+      <div class="flow-item"><div class="fc" style="background:#4f46e5;">1</div><div class="fb"><strong>Transaction Processed</strong><span>Customer pays → authorization approved → transaction added to current open batch</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#4f46e5;">2</div><div class="fb"><strong>Batch Closes (End of Day)</strong><span>Open batch automatically closes (or merchant manually settles) at configured cutoff time</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#4f46e5;">3</div><div class="fb"><strong>Settlement Request Sent</strong><span>Valor sends batch to processor who submits to Visa/MC/ACH networks</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#4f46e5;">4</div><div class="fb"><strong>Funds Deposited (1–3 Business Days)</strong><span>Processor deposits net funds (after fees) to merchant's acquiring bank account</span></div></div>
+      <div class="flow-item"><div class="fc" style="background:#4f46e5;">5</div><div class="fb"><strong>Reconcile in VPOnline Reports</strong><span>Match batch totals in Valor Reports to actual bank deposit amounts</span></div></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#4f46e5;">→</div>Report Types Available</div>
+    <div class="g2">
+      <div class="card card-indigo"><h4>📦 Batch Summary Report</h4><ul><li>Batch number, date submitted, total amount</li><li>Count of transactions in each batch</li><li>Settlement status (Pending/Settled)</li><li>Breakdown by card type (Visa, MC, AmEx, Debit)</li></ul></div>
+      <div class="card card-blue"><h4>📋 Transaction Detail Report</h4><ul><li>Every individual transaction with full details</li><li>Filter by date, card type, amount, approval status</li><li>Export to CSV for spreadsheet analysis</li><li>Includes tip, tax, surcharge breakdowns</li></ul></div>
+      <div class="card card-green"><h4>💰 Deposit Reconciliation</h4><ul><li>Match Valor batch settlements to bank deposits</li><li>Identify missing or mismatched deposits</li><li>Account for processing fees deducted</li></ul></div>
+      <div class="card card-teal"><h4>🔄 Recurring Report</h4><ul><li>All active subscription schedules</li><li>Upcoming payment dates and amounts</li><li>Failed recurring payment history</li></ul></div>
+    </div>
+
+    <div class="callout cv" style="margin-top:12px;"><strong>💡 Reconciliation Formula</strong><p>Bank Deposit = Batch Total − Interchange Fees − Network Fees − Processor Fees. Typical deduction: 2–3% of batch total. Use the batch detail in Valor Reports to verify the expected deposit, then match to your bank statement.</p></div>
+  </div>
+</div>
+
+
+<!-- ══════════ SECTION 9 — ERRORS ══════════ -->
+<div class="section-banner sb-amber">
+  <div class="sb-num">9</div>
+  <div><div class="sb-label">Section 9</div><div class="sb-title">Common Errors &amp; Support</div><div class="sb-desc">Declines, duplicates, token issues, settlement mismatches, and how to fix them</div></div>
+</div>
+
+<div id="errors">
+  <div class="ch-header">
+    <div class="ch-num" style="background:#d97706;">23</div>
+    <div><div class="ch-label" style="color:#d97706;">Errors</div><div class="ch-title">Common Errors, Declines &amp; Fixes</div><div class="ch-desc">What goes wrong, why it happens, and exactly what to do about it.</div></div>
+  </div>
+  <div class="block">
+
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">1</div>Transaction Declines — Response Codes</div>
+    <table>
+      <thead><tr><th>Code</th><th>Description</th><th>Root Cause</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td><code>00</code></td><td><span class="tag t-green">Approved</span></td><td>Success</td><td>N/A — transaction processed</td></tr>
+        <tr><td><code>05</code></td><td><span class="tag t-rose">Declined</span></td><td>Do Not Honor — generic bank decline</td><td>Customer calls their bank; try different card</td></tr>
+        <tr><td><code>51</code></td><td><span class="tag t-rose">Insufficient Funds</span></td><td>Not enough credit/balance available</td><td>Customer uses different card or payment method</td></tr>
+        <tr><td><code>14</code></td><td><span class="tag t-rose">Invalid Card Number</span></td><td>Card number fails Luhn check</td><td>Re-enter card number carefully — likely typo</td></tr>
+        <tr><td><code>54</code></td><td><span class="tag t-rose">Expired Card</span></td><td>Card past its expiry date</td><td>Customer provides updated card</td></tr>
+        <tr><td><code>41</code></td><td><span class="tag t-rose">Lost Card</span></td><td>Issuer has flagged card as lost</td><td>Do not retry — contact issuer</td></tr>
+        <tr><td><code>43</code></td><td><span class="tag t-rose">Stolen Card</span></td><td>Issuer has flagged card as stolen</td><td>Do not retry — contact issuer</td></tr>
+        <tr><td><code>65</code></td><td><span class="tag t-amber">Exceeds Limit</span></td><td>Transaction over card or merchant limit</td><td>Split into smaller transactions or raise limits</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">2</div>Duplicate Transaction Error</div>
+    <div class="card card-amber" style="margin-bottom:8px;"><h4>⚠️ What Happens</h4><p>Valor (and most processors) detect duplicate transactions — same card, same amount, within a short time window. The second transaction is rejected with a "Duplicate Transaction" error.</p></div>
+    <div class="g2">
+      <div class="callout cg"><strong>✅ How to Fix</strong><p>Wait 5–10 minutes before retrying the same card/amount combination. Or add a unique invoice number to each request to differentiate transactions. Check the Transactions module first to confirm the original didn't process before retrying.</p></div>
+      <div class="callout ca"><strong>⚠️ Common Cause</strong><p>Network timeout — the first request sent but the response never returned. The transaction DID process. Always check VPOnline before assuming a timeout means a failure and retrying.</p></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">3</div>Vault / Token Issues</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="err-row"><div class="err-code" style="color:var(--amber);background:var(--amber-mid);">TOKEN INVALID</div><div class="err-body"><strong>Token Not Found or Expired</strong><p>Vault customer was deleted, or token was from a different environment (sandbox vs live). Re-add the customer to Vault to get a fresh token.</p></div></div>
+      <div class="err-row"><div class="err-code" style="color:var(--amber);background:var(--amber-mid);">CARD EXPIRED</div><div class="err-body"><strong>Saved Card Has Expired</strong><p>Even in Vault, the underlying card can expire. Go to Vault → Edit Customer → Add new card with updated expiry. Delete the old expired card.</p></div></div>
+      <div class="err-row"><div class="err-code" style="color:var(--amber);background:var(--amber-mid);">CVV REQUIRED</div><div class="err-body"><strong>CVV Prompted Unexpectedly</strong><p>This should not happen for Vault transactions. Check that you're using the Vault token path (not manual card entry) in the Virtual Terminal.</p></div></div>
+      <div class="err-row"><div class="err-code" style="color:var(--amber);background:var(--amber-mid);">VAULT DISABLED</div><div class="err-body"><strong>Module Not Enabled</strong><p>The Vault module was disabled for this merchant or operator. Contact your ISO to re-enable Vault access in the merchant's module settings.</p></div></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">4</div>Settlement Mismatch</div>
+    <div class="g2">
+      <div class="card card-rose"><h4>❌ Problem: Deposit doesn't match batch total</h4><ul><li>Fees deducted (interchange, network, gateway) — expected</li><li>Refunds processed reduced net deposit</li><li>Void after batch submitted — adjustment in next deposit</li><li>Timing difference — settlement may post next business day</li></ul></div>
+      <div class="card card-green"><h4>✅ Resolution Steps</h4><ul><li>Go to Reports → Batch Detail for that day</li><li>Subtract expected fees from batch total</li><li>Check if any refunds were issued that day</li><li>Compare adjusted total to bank deposit</li><li>If still mismatched, contact Valor support with batch number</li></ul></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">5</div>Sudden Multiple Declines (Account-Level)</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 14px;border-left:3px solid #e11d48;"><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">🚨 All payments suddenly declining?</div><p style="font-size:11.5px;color:var(--muted);">If every transaction starts failing at once, the issue is likely account-level, not card-level. Check these in order:</p><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;"><span class="tag t-rose">1. Fraud filter triggered?</span><span class="tag t-rose">2. Account in review mode?</span><span class="tag t-amber">3. Transaction limit reached?</span><span class="tag t-amber">4. API credentials wrong environment?</span><span class="tag t-slate">5. Processor system outage?</span></div></div>
+      <div class="callout ca"><strong>Action: Contact Valor Support</strong><p>If you've checked the above and can't identify the cause, contact Valor PayTech support at <strong>1.800.615.8755</strong> or email <strong>sales@valorpaytech.com</strong>. Have your EPI number and a sample declined transaction reference number ready.</p></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#d97706;">→</div>Quick Reference — Error Checklist</div>
+    <div class="g2">
+      <div class="card card-blue"><h4>📋 Single Card Declined</h4><ul><li>Check response code (05, 51, 54, 14?)</li><li>Verify card number, expiry, CVV entered correctly</li><li>Check billing address matches bank records (AVS)</li><li>Ask customer to call their bank</li><li>Try a different payment method</li></ul></div>
+      <div class="card card-rose"><h4>📋 All Payments Declining</h4><ul><li>Check VPOnline dashboard for alerts</li><li>Verify API credentials (right environment?)</li><li>Check transaction limits in Settings</li><li>Look for fraud filter triggers (Shield RT)</li><li>Call Valor support: 1.800.615.8755</li></ul></div>
+      <div class="card card-amber"><h4>📋 ACH Return / NSF</h4><ul><li>Wait for return code (R01, R02, etc.)</li><li>Notify customer of failed ACH immediately</li><li>Request updated bank info if R02/R03/R04</li><li>Do not auto-retry without customer authorization</li></ul></div>
+      <div class="card card-teal"><h4>📋 Vault / Token Error</h4><ul><li>Confirm Vault module is enabled for user</li><li>Verify customer still exists in List Customer</li><li>Check if saved card has expired</li><li>Re-add customer if token invalid</li><li>Ensure using Virtual Terminal (not POS) for Vault charges</li></ul></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div><!-- /main -->
+
+<script>
+function toggleAcc(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// Active nav highlight on scroll
+const ids = ['what','how','modules','dashboard','transactions','virtual-terminal','settings','reports','api-basics','api-keys','api-request','webhooks','vault-overview','vault-add','vault-manage','vault-recurring','fraud','pci','txn-types','ach','recurring','reporting','errors'];
+const items = document.querySelectorAll('.nav-item');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      items.forEach(n=>n.classList.remove('active'));
+      const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.2, rootMargin:'-60px 0px -40% 0px'});
+ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+</script>
+</body>
+</html>
