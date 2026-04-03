@@ -82,6 +82,7 @@
             letter-spacing: .1em;
             text-transform: uppercase;
             color: var(--light-text);
+            display: none;
         }
 
         .sidebar-logo-title {
@@ -125,6 +126,7 @@
             height: 10px;
             border-radius: 3px;
             flex-shrink: 0;
+            display: none;
         }
 
         .nav-acc-label {
@@ -164,6 +166,7 @@
             text-transform: uppercase;
             color: var(--light-text);
             margin-top: 4px;
+            display: none;
         }
 
         .nav-item {
@@ -197,6 +200,7 @@
             height: 5px;
             border-radius: 50%;
             flex-shrink: 0;
+            display: none;
         }
 
         .nav-divider {
@@ -215,35 +219,13 @@
 
         /* MASTER HERO */
         .master-hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #312e81 100%);
+            background: #1e40af;
             border-radius: 16px;
             padding: 36px 40px;
             margin-bottom: 36px;
             color: white;
             position: relative;
             overflow: hidden;
-        }
-
-        .master-hero::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .05);
-        }
-
-        .master-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40px;
-            left: 35%;
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .04);
         }
 
         .hero-eyebrow {
@@ -280,38 +262,40 @@
         }
 
         .spill {
-            padding: 6px 15px;
+            padding: 8px 16px;
             border-radius: 8px;
             font-size: 11.5px;
             font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, .18);
+            border: none;
             cursor: pointer;
             text-decoration: none;
             transition: all .15s;
+            background: rgba(255, 255, 255, .2);
+            color: white;
         }
 
         .spill:hover {
-            background: rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .3);
         }
 
         .spill-blue {
-            background: rgba(59, 130, 246, .25);
-            color: #93c5fd;
+            background: rgba(255, 255, 255, .2);
+            color: white;
         }
 
         .spill-purple {
-            background: rgba(167, 139, 250, .2);
-            color: #c4b5fd;
+            background: rgba(255, 255, 255, .2);
+            color: white;
         }
 
         .spill-teal {
-            background: rgba(20, 184, 166, .2);
-            color: #5eead4;
+            background: rgba(255, 255, 255, .2);
+            color: white;
         }
 
         .spill-valor {
-            background: rgba(10, 61, 145, .25);
-            color: #60a5fa;
+            background: rgba(255, 255, 255, .2);
+            color: white;
         }
 
         /* SECTION BANNER */
@@ -1791,10 +1775,11 @@
             <p>Credit cards, ACH transfers, paper checks — and a real-world storyline that ties it all together. Read in
                 order, from foundation to implementation.</p>
             <div class="section-pills">
-                <a class="spill spill-blue" href="#ch1">A. Credit &amp; Card Payments</a>
-                <a class="spill spill-teal" href="#checks">B. Checks</a>
-                <a class="spill spill-purple" href="#story">C. Storyline</a>
-                <a class="spill spill-valor" href="valor.html" target="_blank">E. Valor PayTech</a>
+                <a class="spill spill-blue" href="#section-a">A. Credit &amp; Card Payments</a>
+                <a class="spill spill-teal" href="#section-b">B. Checks</a>
+                <a class="spill spill-purple" href="#section-c">C. Storyline</a>
+                <a class="spill" href="Authorize.html" target="_blank">D. Authorize.net</a>
+                <a class="spill spill-valor" href="#section-e">E. Valor PayTech</a>
             </div>
         </div>
 
