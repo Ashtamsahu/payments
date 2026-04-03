@@ -219,11 +219,11 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
 .fraud-card p{font-size:10.5px;color:var(--muted);}
 
 /* ─── IMAGE ─── */
-.img-row{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0;}
-.img-card{flex:1;min-width:140px;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--white);}
-.img-card img{width:100%;height:130px;object-fit:cover;display:block;}
-.img-cap{font-size:10px;color:var(--muted);padding:6px 9px;text-align:center;}
-.img-full img{height:160px;}
+.img-row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0;justify-content:center;}
+.img-row .img-card{flex:1 1 0;min-width:300px;max-width:1000px;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--white);}
+.img-card img{width:100%;height:auto;object-fit:contain;display:block;}
+.img-cap{font-size:10px;color:var(--muted);padding:8px 10px;text-align:center;}
+.img-full img{max-height:none;}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:820px){.sidebar{display:none;}.main{margin-left:0;padding:18px 16px 60px;}.g2,.g3,.g4,.cred-grid,.mode-grid{grid-template-columns:1fr;}}
@@ -299,7 +299,7 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
   </div>
   <div class="block">
     <div class="img-row">
-      <div class="img-card img-full"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="Payment gateway network"/><div class="img-cap">Authorize.net sits between your website and the financial institutions</div></div>
+      <div class="img-card img-full"><img src="Autho-dashboard.png"/><div class="img-cap">Authorize.net Dashboard — main interface for account management and transactions</div></div>
     </div>
 
     <p style="font-size:13px;color:var(--muted);margin-bottom:14px;max-width:700px;"><strong style="color:var(--text);">Authorize.Net</strong> is a platform owned by Visa Inc. that acts as a <strong style="color:var(--text);">middleman between your website/app and the financial institutions</strong> involved in a transaction. It handles the entire technical bridge — from capturing card data to routing it through banks and returning a result.</p>
@@ -487,6 +487,9 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
     <div><div class="ch-label" style="color:#0d9488;">API</div><div class="ch-title">API Basics &amp; Base URLs</div><div class="ch-desc">The two environments — sandbox for testing, production for live transactions.</div></div>
   </div>
   <div class="block">
+    <div class="img-row">
+      <div class="img-card img-full"><img src="api.png" alt="API Credentials and Base URL"/><div class="img-cap">API Credentials and Base URLs in the Authorize.net dashboard</div></div>
+    </div>
     <div class="mode-grid">
       <div class="mode-test">
         <div class="mode-badge mb-test">🧪 SANDBOX — TEST MODE</div>
@@ -537,9 +540,9 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
     <div><div class="ch-label" style="color:#0d9488;">API Request</div><div class="ch-title">Sample API Request — Charge a Card</div><div class="ch-desc">The JSON structure for an authCaptureTransaction (Sale — most common type).</div></div>
   </div>
   <div class="block">
-    <div class="img-row">
+    <!-- <div class="img-row">
       <div class="img-card img-full"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&q=80" alt="Developer coding API"/><div class="img-cap">Integrating with the Authorize.net API to charge a card</div></div>
-    </div>
+    </div> -->
 
     <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Request JSON — authCaptureTransaction</div>
     <div class="code-block">
@@ -669,6 +672,98 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
       <p>Authorize.net Dashboard → <strong>Account</strong> → Account and API Settings → Security Settings → <strong>API Credentials &amp; Keys</strong></p>
     </div>
 
+    <div class="img-row">
+      <div class="img-card img-full"><img src="api.png">API Credentials and Keys page — showing API Login ID, Transaction Key, Signature Key, and Public Client Key</div></div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>How to Find Your API Credentials — Step-by-Step</div>
+    <div class="action-grid">
+      <div class="action-step">
+        <div class="action-num" style="background:#0d9488;">1</div>
+        <div class="action-body">
+          <strong>Log in to your Authorize.net Merchant Interface</strong>
+          <p style="font-size:11.5px;color:var(--muted);">Go to <strong>merchant.authorize.net</strong> (for live production) or <strong>sandbox.authorize.net</strong> (for testing). Enter your credentials and sign in.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="action-num" style="background:#0d9488;">2</div>
+        <div class="action-body">
+          <strong>Click Account from the main toolbar</strong>
+          <p style="font-size:11.5px;color:var(--muted);">You'll see "Account" in the top navigation menu. Click it to access account settings and options.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="action-num" style="background:#0d9488;">3</div>
+        <div class="action-body">
+          <strong>Navigate to Security Settings</strong>
+          <p style="font-size:11.5px;color:var(--muted);">Under the Account section, look for <strong>"Account and API Settings"</strong> or <strong>"Security Settings"</strong>. Some older versions show this in the left navigation panel.</p>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="action-num" style="background:#0d9488;">4</div>
+        <div class="action-body">
+          <strong>Select "API Credentials &amp; Keys"</strong>
+          <p style="font-size:11.5px;color:var(--muted);">Click on this section to view all your API credentials and keys for this environment (sandbox or production).</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>Detailed Credential Information</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;border-left:3px solid #2563eb;">
+        <strong style="font-size:12.5px;color:var(--text);">🆔 API Login ID</strong>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:6px;"><strong style="color:var(--text);">On the API Credentials &amp; Keys page, you will see your API Login ID displayed.</strong> This is a unique identifier for your merchant account. It's already visible on this page and does not require any action to generate — it's always there. Example: <code style="font-family:'Courier New',monospace;font-size:10px;background:#f1f5f9;padding:2px 6px;border-radius:3px;">233Loc9Jy9u</code></p>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;border-left:3px solid #0d9488;">
+        <strong style="font-size:12.5px;color:var(--text);">🔑 Transaction Key</strong>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:6px;margin-bottom:8px;">The Transaction Key is a critical authentication credential used for API calls. To obtain it:</p>
+        <div style="background:#f0fdfa;border:1px solid #99f6e4;border-radius:7px;padding:10px 12px;margin-bottom:8px;">
+          <strong style="font-size:11px;color:#0d9488;display:block;margin-bottom:6px;">Steps to Generate or Retrieve:</strong>
+          <ol style="margin-left:18px;font-size:11px;color:var(--muted);">
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">Select "New Transaction Key"</strong> from the API Credentials page. Click this button to generate a new key.</li>
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">Click Submit.</strong> The system will prompt you to verify your identity for security.</li>
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">For security, you will be prompted to request and enter a PIN</strong> that is sent to your registered email address. Check your email for this PIN.</li>
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">After entering the PIN correctly, the new Transaction Key will be displayed on the screen.</strong></li>
+            <li style="margin-bottom:0px;"><strong style="color:var(--text);">⚠️ Copy it immediately</strong> — it will NOT be shown again for security reasons. Once you navigate away from this page, you cannot retrieve the same key again. If you lose it, you must generate a new one.</li>
+          </ol>
+        </div>
+        <p style="font-size:11px;color:var(--muted);">The Transaction Key is what you use alongside your API Login ID for every server-side API request. Keep it private and secure — treat it like a password.</p>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;border-left:3px solid #7c3aed;">
+        <strong style="font-size:12.5px;color:var(--text);">✍️ Signature Key (For Webhooks/IPNs)</strong>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:6px;margin-bottom:8px;">The Signature Key is used to validate webhook (Instant Payment Notification) payloads sent from Authorize.net to your server:</p>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:7px;padding:10px 12px;margin-bottom:8px;">
+          <strong style="font-size:11px;color:#7c3aed;display:block;margin-bottom:6px;">How to Get It:</strong>
+          <ul style="margin-left:18px;font-size:11px;color:var(--muted);">
+            <li style="margin-bottom:4px;">Look for <strong style="color:var(--text);">"Signature Key"</strong> section on the API Credentials page.</li>
+            <li style="margin-bottom:4px;">If you already have one, it will be displayed (usually masked with asterisks for security).</li>
+            <li style="margin-bottom:0px;">If you don't have one, click <strong style="color:var(--text);">"Generate New Signature Key"</strong> button to create one.</li>
+          </ul>
+        </div>
+        <p style="font-size:11px;color:var(--muted);">This key is essential for Server Integration Method (SIM) and webhook validation. It ensures that notifications you receive are genuinely from Authorize.net and haven't been tampered with.</p>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;border-left:3px solid #d97706;">
+        <strong style="font-size:12.5px;color:var(--text);">🌐 Public Client Key (For Accept.js)</strong>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:6px;margin-bottom:8px;">The Public Client Key is used for client-side tokenization via Accept.js (Authorize.net's frontend library):</p>
+        <div style="background:#fffbeb;border:1px solid #fef3c7;border-radius:7px;padding:10px 12px;margin-bottom:8px;">
+          <strong style="font-size:11px;color:#d97706;display:block;margin-bottom:6px;">Steps to Get It:</strong>
+          <ol style="margin-left:18px;font-size:11px;color:var(--muted);">
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">Go back to the Account tab</strong> if you're not already there (Account &gt; Account and API Settings &gt; Security Settings).</li>
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">Under Security Settings, click "Manage Public Client Key".</strong></li>
+            <li style="margin-bottom:4px;"><strong style="color:var(--text);">If one hasn't been created yet,</strong> you will be prompted to answer a security question to generate a new Public Client Key.</li>
+            <li style="margin-bottom:0px;"><strong style="color:var(--text);">Once generated,</strong> the key will be displayed and is safe to use in your frontend/browser JavaScript code (it's intentionally public).</li>
+          </ol>
+        </div>
+        <p style="font-size:11px;color:var(--muted);">The Public Client Key is designed to be used safely in browser-side JavaScript with Accept.js. It can tokenize card data on the client side before it reaches your server, providing an extra layer of security. Unlike the Transaction Key, it's safe to expose.</p>
+      </div>
+    </div>
+
     <div class="cred-grid">
       <div class="cred-card cred-c1">
         <div class="cred-icon">🆔</div>
@@ -708,12 +803,30 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
       </tbody>
     </table>
 
-    <div class="callout cr" style="margin-top:10px;">
-      <strong>🚨 Security Warning</strong>
-      <p>Never expose your <strong>API Login ID</strong>, <strong>Transaction Key</strong>, or <strong>Signature Key</strong> in browser-side JavaScript, public GitHub repos, or client-side code. These must live only on your server. Only the Public Client Key is safe for frontend use.</p>
+    <hr class="divider"/>
+    <div class="block-title"><div class="bt-num" style="background:#0d9488;">→</div>API Credential Dates and Audit Trail</div>
+    <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">On the API Credentials &amp; Keys page, you will also see:</p>
+    <ul style="margin-left:16px;font-size:11.5px;color:var(--muted);">
+      <li style="margin-bottom:6px;"><strong style="color:var(--text);">API Login ID last obtained:</strong> The date and time when this credential was last generated or accessed. This helps track account activity.</li>
+      <li style="margin-bottom:0px;"><strong style="color:var(--text);">Transaction key last obtained:</strong> The date and time when your current Transaction Key was generated. This helps you track credential age and security updates. If you see an unexpected date, your key may have been regenerated without your knowledge.</li>
+    </ul>
+    
+    <div class="callout cr" style="margin-top:12px;">
+      <strong>🚨 Security Best Practices for Credentials</strong>
+      <p>Never expose your <strong>API Login ID</strong>, <strong>Transaction Key</strong>, or <strong>Signature Key</strong> in browser-side JavaScript, client code, or public repositories (GitHub, GitLab, etc.). These must be stored securely on your backend server only. The <strong>only credential safe for frontend use is the Public Client Key</strong>. Rotate your Transaction Key periodically (at least every 6–12 months) and immediately if you suspect compromise.</p>
     </div>
-  </div>
-</div>
+
+    <div class="callout cb" style="margin-top:10px;">
+      <strong>💡 Credential Management Tips</strong>
+      <p><strong>Save securely:</strong> Use environment variables or a secure secrets manager (e.g., AWS Secrets Manager, HashiCorp Vault, Azure Key Vault) to store credentials, never hardcoded. <strong>Separate by environment:</strong> Keep sandbox credentials separate from production credentials. <strong>Log access:</strong> Track when credentials were last used to detect unauthorized access. <strong>Regenerate regularly:</strong> Even if there's no breach, rotate credentials every 6–12 months as a best practice.</p>
+    </div>
+
+    <div class="callout ca" style="margin-top:10px;">
+      <strong>⚠️ If You Suspect Credential Compromise</strong>
+      <p><strong>1. Immediately go to the API Credentials page</strong> — click <strong>"New Transaction Key"</strong> to generate a fresh key. The old key will be invalidated. <strong>2. Update your application code</strong> with the new Transaction Key. Any API calls using the old key will start failing. <strong>3. Check your transaction logs</strong> for any suspicious activity during the suspected compromise period. <strong>4. Contact Authorize.net support</strong> if you see fraudulent transactions made with your account.</p>
+    </div>
+
+    <hr class="divider"/>
 
 
 <!-- ══════════════════════════════════════
@@ -731,7 +844,7 @@ td code{font-family:'Courier New',monospace;font-size:11px;background:#f1f5f9;pa
   </div>
   <div class="block">
     <div class="img-row">
-      <div class="img-card img-full"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=700&q=80" alt="Cybersecurity fraud detection"/><div class="img-cap">AFDS — evaluating every transaction for fraud risk before it reaches the bank</div></div>
+      <div class="img-card img-full"><img src="fraud.png" alt="Fraud Detection Filters"/><div class="img-cap">Fraud Detection Filters Dashboard — configure and manage transaction filters</div></div>
     </div>
 
     <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">The <strong style="color:var(--text);">Advanced Fraud Detection Suite (AFDS)</strong> is a configurable, rules-based system that evaluates every transaction before it is forwarded for bank authorization. Merchants can set filters to automatically <strong style="color:var(--green);">approve</strong>, <strong style="color:var(--rose);">decline</strong>, or <strong style="color:var(--amber);">hold</strong> transactions for manual review.</p>
